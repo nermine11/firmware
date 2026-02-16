@@ -7,6 +7,18 @@
 
 ExperimentModule *experimentModule;
 
+// make it static
+void ExperimentModule :: deleteElements(int  numElementsToRemove, std::map<NodeNum, std::map<uint32_t, uint32_t>> packetsMap){
+    size_t originalSize = packetsMap.size();
+    if (originalSize <= numElementsToRemove) {
+        auto eraseIter = packetsMap.begin();
+        std::advance(eraseIter, numElementsToRemove);
+        packetsMap.erase(packetsMap.begin(), eraseIter);
+    } else {
+        packetsMap.clear();
+    }
+}
+
 uint32_t ExperimentModule::sendPacket(int i, NodeNum dest)
 {
     meshtastic_MeshPacket *p = router->allocForSending();
@@ -46,7 +58,7 @@ ProcessMessage ExperimentModule::handleReceived(const meshtastic_MeshPacket &mp)
     return ProcessMessage::CONTINUE; // Let others look at this message also if they want
 }
 
-
+//recheck and test this
 uint32_t ExperimentModule::sendToCollector()
 {
     meshtastic_MeshPacket *p = router->allocForSending();
@@ -60,6 +72,9 @@ uint32_t ExperimentModule::sendToCollector()
         // Sent packets
         stats.sent_count = 0; //intialize to 0
         for (auto &destPair : sentPackets){
+            if(stats.sent_count == 10){
+                break;
+            }
             NodeStats *nodeStats = &stats.sent[stats.sent_count];
             stats.sent_count ++;
             nodeStats->node_id = destPair.first;
@@ -72,11 +87,13 @@ uint32_t ExperimentModule::sendToCollector()
                 entry->timestamp = packetPair.second;
             }
         }
-        sentPackets.clear(); // clear the map
         // Recieved packets
         stats.received_count = 0;
         for (auto &srcPair : receivedPackets)
         {
+            if(stats.received_count == 10){
+                break;
+            }
             NodeStats *nodeStats = &stats.received[stats.received_count];
             stats.received_count++;
             nodeStats->node_id = srcPair.first;
@@ -89,7 +106,6 @@ uint32_t ExperimentModule::sendToCollector()
                 entry->timestamp = packetPair.second;
             }
         }
-        receivedPackets.clear();
         // Encode into payload
         pb_ostream_t stream = pb_ostream_from_buffer(
             p->decoded.payload.bytes,
@@ -100,6 +116,8 @@ uint32_t ExperimentModule::sendToCollector()
             LOG_ERROR("Protobuf encode failed");
             return 0;
         }
+        deleteElements(stats.sent_count, sentPackets);
+        deleteElements(stats.received_count, receivedPackets);
         p->decoded.payload.size = stream.bytes_written;
         service->sendToMesh(p);
         return p->id;

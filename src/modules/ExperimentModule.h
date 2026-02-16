@@ -55,11 +55,12 @@ class ExperimentModule : public SinglePortModule,  private concurrency::OSThread
      */
     uint32_t sendPacket(int i, NodeNum dest);
     /**
-     * Called when we receive a packet
-     * We save the packet in receivedPackets map
+     * Called when we receive a packet, We save the packet in receivedPackets map
      */
     ProcessMessage handleReceived(const meshtastic_MeshPacket &mp) override;
     uint32_t ExperimentModule::sendToCollector();
+  private:
+    static void ExperimentModule ::deleteElements(int numElementsToRemove, std::map<NodeNum, std::map<uint32_t, uint32_t>> packets);
 };
 
 extern ExperimentModule *experimentModule;
