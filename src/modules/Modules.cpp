@@ -106,6 +106,9 @@
 #if !MESHTASTIC_EXCLUDE_DROPZONE
 #include "modules/DropzoneModule.h"
 #endif
+#if !MESHTASTIC_EXCLUDE_EXPERIMENT
+#include "modules/ExperimentModule.h"
+#endif
 
 /**
  * Create module instances here.  If you are adding a new module, you must 'new' it here (or somewhere else)
@@ -118,6 +121,9 @@ void setupModules()
         systemCommandsModule = new SystemCommandsModule();
         buzzerFeedbackThread = new BuzzerFeedbackThread();
     }
+#endif
+#if !MESHTASTIC_EXCLUDE_EXPERIMENT
+    experimentModule = new ExperimentModule();
 #endif
 #if !MESHTASTIC_EXCLUDE_ADMIN
     adminModule = new AdminModule();
