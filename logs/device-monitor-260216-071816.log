@@ -1,0 +1,501 @@
+07:18:24.399 > [32mINFO  [0m| ??:??:?? 35 [NodeInfo] [32mSend our nodeinfo to mesh (wantReplies=0)
+07:18:24.424 > [0m[32mINFO  [0m| ??:??:?? 35 [NodeInfo] [32mSend owner !49242450/Meshtastic 2450/2450
+07:18:24.424 > [0m[34mDEBUG [0m| ??:??:?? 35 [NodeInfo] [34mInitial packet id 800150210
+07:18:24.424 > [0m[34mDEBUG [0m| ??:??:?? 35 [NodeInfo] [34mPartially randomized packet id 3190699715
+07:18:24.424 > [0m[34mDEBUG [0m| ??:??:?? 35 [NodeInfo] [34mIgnore update from self
+07:18:24.424 > [0m[34mDEBUG [0m| ??:??:?? 35 [NodeInfo] [34mhandleReceived(LOCAL) (id=0xbe2e36c3 fr=0x49242450 to=0xffffffff, transport = 0, WantAck=0, HopLim=3 Ch=0x0 Portnum=4 priority=10)
+07:18:24.424 > [0m[34mDEBUG [0m| ??:??:?? 35 [NodeInfo] [34mNo modules interested in portnum=4, src=LOCAL
+07:18:24.424 > [0m[32mINFO  [0m| ??:??:?? 35 [NodeInfo] [32mPacket History - insert: Using new slot @uptime 35.372s TRACE NEW
+07:18:24.424 > [0m[34mDEBUG [0m| ??:??:?? 35 [NodeInfo] [34mExpand short PSK #1
+07:18:24.424 > [0m[34mDEBUG [0m| ??:??:?? 35 [NodeInfo] [34mUse AES128 key!
+07:18:24.424 > [0m[34mDEBUG [0m| ??:??:?? 35 [NodeInfo] [34menqueue for send (id=0xbe2e36c3 fr=0x49242450 to=0xffffffff, transport = 0, WantAck=0, HopLim=3 Ch=0x8 encrypted len=102 hopStart=3 relay=0x50 priority=10)
+07:18:24.424 > [0m[34mDEBUG [0m| ??:??:?? 35 [NodeInfo] [34mtxGood=0,txRelay=0,rxGood=0,rxBad=0
+07:18:24.424 > [0m[34mDEBUG [0m| ??:??:?? 35 [RadioIf] [34mStarted Tx (id=0xbe2e36c3 fr=0x49242450 to=0xffffffff, transport = 0, WantAck=0, HopLim=3 Ch=0x8 encrypted len=102 hopStart=3 relay=0x50 priority=10)
+07:18:24.469 > [0m[34mDEBUG [0m| ??:??:?? 35 [RadioIf] [34m0 packets remain in the TX queue
+07:18:24.471 > [0m[34mDEBUG [0m| ??:??:?? 36 [RadioIf] [34mPacket TX: 1009ms
+07:18:25.477 > [0m[34mDEBUG [0m| ??:??:?? 36 [RadioIf] [34mCompleted sending (id=0xbe2e36c3 fr=0x49242450 to=0xffffffff, transport = 0, WantAck=0, HopLim=3 Ch=0x8 encrypted len=102 hopStart=3 relay=0x50 priority=10)
+07:18:25.481 > [0m[34mDEBUG [0m| ??:??:?? 38 [RadioIf] [34mCorrected frequency offset: 26.156248
+07:18:27.775 > [0m[34mDEBUG [0m| ??:??:?? 38 [RadioIf] [34mLora RX (id=0xbe2e36c3 fr=0x49242450 to=0xffffffff, transport = 0, WantAck=0, HopLim=2 Ch=0x8 encrypted len=102 rxSNR=7.5 rxRSSI=-14 hopStart=3 relay=0xa2)
+07:18:27.778 > [0m[34mDEBUG [0m| ??:??:?? 38 [RadioIf] [34mPacket RX: 1009ms
+07:18:27.778 > [0m[34mDEBUG [0m| ??:??:?? 38 [Router] [34mRx someone rebroadcasting for us (id=0xbe2e36c3 fr=0x49242450 to=0xffffffff, transport = 1, WantAck=0, HopLim=2 Ch=0x8 encrypted len=102 rxSNR=7.5 rxRSSI=-14 
+07:18:27.788 > [0m[34mDEBUG [0m| ??:??:?? 38 [Router] [34mDidn't find pending packet
+07:18:27.791 > [0m[32mINFO  [0m| ??:??:?? 38 [Router] [32mPacket History - insert: Reusing slot aged 3.378s TRACE MATCHED PACKET
+07:18:27.792 > [0m[34mDEBUG [0m| ??:??:?? 38 [Router] [34mIgnore dupe incoming msg (id=0xbe2e36c3 fr=0x49242450 to=0xffffffff, transport = 1, WantAck=0, HopLim=2 Ch=0x8 encrypted len=102 rxSNR=7.5 rxRSSI=-14 hopStart
+07:18:27.796 > [0m[34mDEBUG [0m| ??:??:?? 38 [Router] [34mcancelSending id=0xbe2e36c3, removed=0
+07:18:27.798 > [0m[34mDEBUG [0m| ??:??:?? 38 [Router] [34mIncoming msg was filtered from 0x49242450
+07:18:27.798 > [0m[34mDEBUG [0m| ??:??:?? 40 [RadioIf] [34mCorrected frequency offset: 8.718750
+07:18:29.535 > [0m[34mDEBUG [0m| ??:??:?? 40 [RadioIf] [34mLora RX (id=0x480f7f5d fr=0x6d4d1ba2 to=0x49242450, transport = 0, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 rxSNR=7.75 rxRSSI=-14 hopStart=3 nextHop=0x50 r
+07:18:29.538 > [0m[34mDEBUG [0m| ??:??:?? 40 [RadioIf] [34mPacket RX: 641ms
+07:18:29.539 > [0m[32mINFO  [0m| ??:??:?? 40 [Router] [32mPacket History - insert: Using new slot @uptime 40.506s TRACE NEW
+07:18:29.547 > [0m[34mDEBUG [0m| ??:??:?? 40 [Router] [34mAttempt PKI decryption
+07:18:29.548 > [0m[32mINFO  [0m| ??:??:?? 40 [Router] [32mRandom nonce value: 1269817914
+07:18:29.643 > [0m[34mDEBUG [0m| ??:??:?? 40 [Router] [34mAttempt decrypt with nonce:  5d 7f 0f 48 3a e2 af 4b a2 1b 4d 6d 00
+07:18:29.645 > 
+07:18:29.645 > [0m[34mDEBUG [0m| ??:??:?? 40 [Router] [34mAttempt decrypt with shared_key starting with:  c2 01 58 5c 28 5b e3 58
+07:18:29.649 > 
+07:18:29.649 > [0m[33mWARN  [0m| ??:??:?? 40 [Router] [33mPKC decrypt attempted but failed!
+07:18:29.650 > [0m[33mWARN  [0m| ??:??:?? 40 [Router] [33mNo suitable channel found for decoding, hash was 0x0!
+07:18:29.651 > [0m[34mDEBUG [0m| ??:??:?? 40 [Router] [34mpacket decoding failed or skipped (no PSK?) (id=0x480f7f5d fr=0x6d4d1ba2 to=0x49242450, transport = 1, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 rxSNR=7.75 
+07:18:29.655 > [0m[34mDEBUG [0m| ??:??:?? 40 [Router] [34mModule 'routing' wantsPacket=1
+07:18:29.657 > [0m[32mINFO  [0m| ??:??:?? 40 [Router] [32mReceived routing from=0x6d4d1ba2, id=0x480f7f5d, portnum=37, payloadlen=43849
+07:18:29.659 > [0m[34mDEBUG [0m| ??:??:?? 40 [Router] [34mRouting sniffing (id=0x480f7f5d fr=0x6d4d1ba2 to=0x49242450, transport = 1, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 rxSNR=7.75 rxRSSI=-14 hopStart=3 nextH
+07:18:29.662 > [0m[34mDEBUG [0m| ??:??:?? 40 [Router] [34mPartially randomized packet id 3362977476
+07:18:29.665 > [0m[34mDEBUG [0m| ??:??:?? 40 [Router] [34mlocalSend to channel 0
+07:18:29.666 > [0m[32mINFO  [0m| ??:??:?? 40 [Router] [32mPacket History - insert: Using new slot @uptime 40.626s TRACE NEW
+07:18:29.667 > [0m[34mDEBUG [0m| ??:??:?? 40 [Router] [34mSetting next hop for packet with dest 6d4d1ba2 to 0
+07:18:29.670 > [0m[34mDEBUG [0m| ??:??:?? 40 [Router] [34mExpand short PSK #1
+07:18:29.671 > [0m[34mDEBUG [0m| ??:??:?? 40 [Router] [34mUse AES128 key!
+07:18:29.769 > [0m[34mDEBUG [0m| ??:??:?? 40 [Router] [34menqueue for send (id=0xc872f6c4 fr=0x49242450 to=0x6d4d1ba2, transport = 0, WantAck=0, HopLim=0 Ch=0x8 encrypted len=29 relay=0x50 priority=120)
+07:18:29.771 > [0m[34mDEBUG [0m| ??:??:?? 40 [Router] [34mtxGood=1,txRelay=0,rxGood=2,rxBad=0
+07:18:29.774 > [0m[34mDEBUG [0m| ??:??:?? 40 [Router] [34mDelivering rx packet (id=0x480f7f5d fr=0x6d4d1ba2 to=0x49242450, transport = 1, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 rxSNR=7.75 rxRSSI=-14 hopStart=3 n
+07:18:29.776 > [0m[34mDEBUG [0m| ??:??:?? 40 [Router] [34mForwarding to phone (id=0x480f7f5d fr=0x6d4d1ba2 to=0x49242450, transport = 1, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 rxSNR=7.75 rxRSSI=-14 hopStart=3 ne
+07:18:29.781 > [0m[34mDEBUG [0m| ??:??:?? 40 [Router] [34mAttempt PKI decryption
+07:18:29.782 > [0m[32mINFO  [0m| ??:??:?? 40 [Router] [32mRandom nonce value: 1269817914
+07:18:29.877 > [0m[34mDEBUG [0m| ??:??:?? 40 [Router] [34mAttempt decrypt with nonce:  5d 7f 0f 48 3a e2 af 4b a2 1b 4d 6d 00
+07:18:29.878 > 
+07:18:29.878 > [0m[34mDEBUG [0m| ??:??:?? 40 [Router] [34mAttempt decrypt with shared_key starting with:  c2 01 58 5c 28 5b e3 58
+07:18:29.882 > 
+07:18:29.882 > [0m[33mWARN  [0m| ??:??:?? 40 [Router] [33mPKC decrypt attempted but failed!
+07:18:29.883 > [0m[33mWARN  [0m| ??:??:?? 40 [Router] [33mNo suitable channel found for decoding, hash was 0x0!
+07:18:29.885 > [0m[34mDEBUG [0m| ??:??:?? 40 [Router] [34mModule 'routing' considered
+07:18:29.886 > [0m[34mDEBUG [0m| ??:??:?? 40 [RadioIf] [34mStarted Tx (id=0xc872f6c4 fr=0x49242450 to=0x6d4d1ba2, transport = 0, WantAck=0, HopLim=0 Ch=0x8 encrypted len=29 relay=0x50 priority=120)
+07:18:29.967 > [0m[34mDEBUG [0m| ??:??:?? 40 [RadioIf] [34m0 packets remain in the TX queue
+07:18:29.968 > [0m[34mDEBUG [0m| ??:??:?? 41 [RadioIf] [34mPacket TX: 477ms
+07:18:30.442 > [0m[34mDEBUG [0m| ??:??:?? 41 [RadioIf] [34mCompleted sending (id=0xc872f6c4 fr=0x49242450 to=0x6d4d1ba2, transport = 0, WantAck=0, HopLim=0 Ch=0x8 encrypted len=29 relay=0x50 priority=120)
+07:18:30.446 > [0m[32mINFO  [0m| ??:??:?? 45 [ExperimentModule] [32m dest: 1833769890, globalCounter:0, LEN(noded): 2 
+07:18:34.401 > [0m[34mDEBUG [0m| ??:??:?? 45 [ExperimentModule] [34mPartially randomized packet id 1531004613
+07:18:34.401 > [0m[34mDEBUG [0m| ??:??:?? 45 [ExperimentModule] [34mIgnore update from self
+07:18:34.404 > [0m[34mDEBUG [0m| ??:??:?? 45 [ExperimentModule] [34mlocalSend to channel 0
+07:18:34.405 > [0m[32mINFO  [0m| ??:??:?? 45 [ExperimentModule] [32mPacket History - insert: Using new slot @uptime 45.366s TRACE NEW
+07:18:34.407 > [0m[34mDEBUG [0m| ??:??:?? 45 [ExperimentModule] [34mSetting next hop for packet with dest 6d4d1ba2 to 0
+07:18:34.409 > [0m[34mDEBUG [0m| ??:??:?? 45 [ExperimentModule] [34mUse PKI!
+07:18:34.410 > [0m[34mDEBUG [0m| ??:??:?? 45 [ExperimentModule] [34mRandom nonce value: 1991705342
+07:18:34.411 > [0m[34mDEBUG [0m| ??:??:?? 45 [ExperimentModule] [34mAttempt encrypt with nonce:  c5 46 41 5b fe 02 b7 76 50 24 24 49 00
+07:18:34.506 > 
+07:18:34.506 > [0m[34mDEBUG [0m| ??:??:?? 45 [ExperimentModule] [34mAttempt encrypt with shared_key starting with:  c2 01 58 5c 28 5b e3 58
+07:18:34.510 > 
+07:18:34.510 > [0m[34mDEBUG [0m| ??:??:?? 45 [ExperimentModule] [34menqueue for send (id=0x5b4146c5 fr=0x49242450 to=0x6d4d1ba2, transport = 0, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 hopStart=3 relay=0x50 priority=100)
+07:18:34.513 > [0m[34mDEBUG [0m| ??:??:?? 45 [ExperimentModule] [34mtxGood=2,txRelay=0,rxGood=2,rxBad=0
+07:18:34.516 > [0m[32mINFO  [0m| ??:??:?? 45 [ExperimentModule] [32mtophone queue status queue is full, discard oldest
+07:18:34.517 > [0m[32mINFO  [0m| ??:??:?? 45 [ExperimentModule] [32mSent test packet 0 to 1833769890
+07:18:34.519 > [0m[32mINFO  [0m| ??:??:?? 45 [ExperimentModule] [32mnb global packets: 1
+07:18:34.520 > [0m[34mDEBUG [0m| ??:??:?? 45 [RadioIf] [34mStarted Tx (id=0x5b4146c5 fr=0x49242450 to=0x6d4d1ba2, transport = 0, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 hopStart=3 relay=0x50 priority=100)
+07:18:34.766 > [0m[34mDEBUG [0m| ??:??:?? 45 [RadioIf] [34m0 packets remain in the TX queue
+07:18:34.768 > [0m[34mDEBUG [0m| ??:??:?? 46 [RadioIf] [34mPacket TX: 641ms
+07:18:35.405 > [0m[34mDEBUG [0m| ??:??:?? 46 [RadioIf] [34mCompleted sending (id=0x5b4146c5 fr=0x49242450 to=0x6d4d1ba2, transport = 0, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 hopStart=3 relay=0x50 priority=100)
+07:18:35.409 > [0m[34mDEBUG [0m| ??:??:?? 65 [Power] [34mBattery: usbPower=0, isCharging=0, batMv=3893, batPct=70
+07:18:54.540 > [0m[34mDEBUG [0m| ??:??:?? 85 [RadioIf] [34mCorrected frequency offset: 10.656249
+07:19:14.641 > [0m[34mDEBUG [0m| ??:??:?? 85 [RadioIf] [34mLora RX (id=0xd60a435e fr=0x6d4d1ba2 to=0xffffffff, transport = 0, WantAck=0, HopLim=3 Ch=0x8 encrypted len=33 rxSNR=6 rxRSSI=-14 hopStart=3 relay=0xa2)
+07:19:14.644 > [0m[34mDEBUG [0m| ??:??:?? 85 [RadioIf] [34mPacket RX: 477ms
+07:19:14.644 > [0m[32mINFO  [0m| ??:??:?? 85 [Router] [32mPacket History - insert: Using new slot @uptime 85.614s TRACE NEW
+07:19:14.653 > [0m[34mDEBUG [0m| ??:??:?? 85 [Router] [34mUse channel 0 (hash 0x8)
+07:19:14.654 > [0m[34mDEBUG [0m| ??:??:?? 85 [Router] [34mExpand short PSK #1
+07:19:14.655 > [0m[34mDEBUG [0m| ??:??:?? 85 [Router] [34mUse AES128 key!
+07:19:14.754 > [0m[34mDEBUG [0m| ??:??:?? 85 [Router] [34mdecoded message (id=0xd60a435e fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=3 Ch=0x0 Portnum=1 rxSNR=6 rxRSSI=-14 hopStart=3 relay=0xa2)
+07:19:14.758 > [0m[34mDEBUG [0m| ??:??:?? 85 [Router] [34mhandleReceived(REMOTE) (id=0xd60a435e fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=3 Ch=0x0 Portnum=1 rxSNR=6 rxRSSI=-14 hopStart=3 relay=0xa
+07:19:14.761 > [0m[34mDEBUG [0m| ??:??:?? 85 [Router] [34mModule 'ExperimentModule' wantsPacket=1
+07:19:14.763 > [0m[32mINFO  [0m| ??:??:?? 85 [Router] [32mReceived test packet from 1833769890
+07:19:14.764 > [0m[34mDEBUG [0m| ??:??:?? 85 [Router] [34mModule 'ExperimentModule' considered
+07:19:14.766 > [0m[34mDEBUG [0m| ??:??:?? 85 [Router] [34mModule 'text' wantsPacket=1
+07:19:14.767 > [0m[32mINFO  [0m| ??:??:?? 85 [Router] [32mReceived text msg from=0x6d4d1ba2, id=0xd60a435e, msg=test: 6: -1
+07:19:14.768 > [0m[34mDEBUG [0m| ??:??:?? 85 [Router] [34mState: ON
+07:19:14.770 > [0m[34mDEBUG [0m| ??:??:?? 85 [Router] [34mModule 'text' considered
+07:19:14.771 > [0m[34mDEBUG [0m| ??:??:?? 85 [Router] [34mModule 'ExternalNotificationModule' wantsPacket=1
+07:19:14.773 > [0m[32mINFO  [0m| ??:??:?? 85 [Router] [32mExternal Notification Module Disabled or muted
+07:19:14.774 > [0m[34mDEBUG [0m| ??:??:?? 85 [Router] [34mModule 'ExternalNotificationModule' considered
+07:19:14.775 > [0m[34mDEBUG [0m| ??:??:?? 85 [Router] [34mModule 'routing' wantsPacket=1
+07:19:14.778 > [0m[32mINFO  [0m| ??:??:?? 85 [Router] [32mReceived routing from=0x6d4d1ba2, id=0xd60a435e, portnum=1, payloadlen=11
+07:19:14.779 > [0m[34mDEBUG [0m| ??:??:?? 85 [Router] [34mRouting sniffing (id=0xd60a435e fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=3 Ch=0x0 Portnum=1 rxSNR=6 rxRSSI=-14 hopStart=3 relay=0xa2)
+07:19:14.782 > [0m[32mINFO  [0m| ??:??:?? 85 [Router] [32mRebroadcast received message coming from a2
+07:19:14.785 > [0m[32mINFO  [0m| ??:??:?? 85 [Router] [32mPacket History - insert: Reusing slot aged 0.134s TRACE MATCHED PACKET
+07:19:14.786 > [0m[34mDEBUG [0m| ??:??:?? 85 [Router] [34mExpand short PSK #1
+07:19:14.787 > [0m[34mDEBUG [0m| ??:??:?? 85 [Router] [34mUse AES128 key!
+07:19:14.886 > [0m[34mDEBUG [0m| ??:??:?? 85 [Router] [34menqueue for send (id=0xd60a435e fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=2 Ch=0x8 encrypted len=33 rxSNR=6 rxRSSI=-14 hopStart=3 relay=0x
+07:19:14.889 > [0m[34mDEBUG [0m| ??:??:?? 85 [Router] [34mtxGood=3,txRelay=0,rxGood=3,rxBad=0
+07:19:14.890 > [0m[34mDEBUG [0m| ??:??:?? 85 [Router] [34mrx_snr found. hop_limit:2 rx_snr:6.000000
+07:19:14.893 > [0m[34mDEBUG [0m| ??:??:?? 85 [Router] [34mrx_snr found in packet. Setting tx delay:3192
+07:19:14.894 > [0m[34mDEBUG [0m| ??:??:?? 85 [Router] [34mDelivering rx packet (id=0xd60a435e fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=3 Ch=0x0 Portnum=1 rxSNR=6 rxRSSI=-14 hopStart=3 relay=0xa2)
+07:19:14.897 > [0m[34mDEBUG [0m| ??:??:?? 85 [Router] [34mUpdate DB node 0x6d4d1ba2, rx_time=0
+07:19:14.899 > [0m[32mINFO  [0m| ??:??:?? 85 [Router] [32mSort took 0 milliseconds
+07:19:14.900 > [0m[34mDEBUG [0m| ??:??:?? 85 [Router] [34mForwarding to phone (id=0xd60a435e fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=3 Ch=0x0 Portnum=1 rxSNR=6 rxRSSI=-14 hopStart=3 relay=0xa2)
+07:19:14.903 > [0m[34mDEBUG [0m| ??:??:?? 85 [Router] [34mModule 'routing' considered
+07:19:14.905 > [0m[34mDEBUG [0m| ??:??:?? 89 [RadioIf] [34mStarted Tx (id=0xd60a435e fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=2 Ch=0x8 encrypted len=33 rxSNR=6 rxRSSI=-14 hopStart=3 relay=0x50 pri
+07:19:18.133 > [0m[34mDEBUG [0m| ??:??:?? 89 [RadioIf] [34m0 packets remain in the TX queue
+07:19:18.134 > [0m[34mDEBUG [0m| ??:??:?? 89 [RadioIf] [34mPacket TX: 477ms
+07:19:18.608 > [0m[34mDEBUG [0m| ??:??:?? 89 [RadioIf] [34mCompleted sending (id=0xd60a435e fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=2 Ch=0x8 encrypted len=33 rxSNR=6 rxRSSI=-14 hopStart=3 relay=0
+07:19:18.612 > [0m[32mINFO  [0m| ??:??:?? 90 [ExperimentModule] [32m dest: 4294967295, globalCounter:1, LEN(noded): 2 
+07:19:19.521 > [0m[34mDEBUG [0m| ??:??:?? 90 [ExperimentModule] [34mPartially randomized packet id 4231020230
+07:19:19.522 > [0m[34mDEBUG [0m| ??:??:?? 90 [ExperimentModule] [34mIgnore update from self
+07:19:19.524 > [0m[34mDEBUG [0m| ??:??:?? 90 [ExperimentModule] [34mhandleReceived(LOCAL) (id=0xfc303ec6 fr=0x49242450 to=0xffffffff, transport = 0, WantAck=0, HopLim=3 Ch=0x0 Portnum=1)
+07:19:19.526 > [0m[34mDEBUG [0m| ??:??:?? 90 [ExperimentModule] [34mNo modules interested in portnum=1, src=LOCAL
+07:19:19.528 > [0m[32mINFO  [0m| ??:??:?? 90 [ExperimentModule] [32mPacket History - insert: Using new slot @uptime 90.491s TRACE NEW
+07:19:19.531 > [0m[34mDEBUG [0m| ??:??:?? 90 [ExperimentModule] [34mExpand short PSK #1
+07:19:19.532 > [0m[34mDEBUG [0m| ??:??:?? 90 [ExperimentModule] [34mUse AES128 key!
+07:19:19.630 > [0m[34mDEBUG [0m| ??:??:?? 90 [ExperimentModule] [34menqueue for send (id=0xfc303ec6 fr=0x49242450 to=0xffffffff, transport = 0, WantAck=0, HopLim=3 Ch=0x8 encrypted len=33 hopStart=3 relay=0x50 priority=100)
+07:19:19.634 > [0m[34mDEBUG [0m| ??:??:?? 90 [ExperimentModule] [34mtxGood=4,txRelay=1,rxGood=3,rxBad=0
+07:19:19.635 > [0m[32mINFO  [0m| ??:??:?? 90 [ExperimentModule] [32mtophone queue status queue is full, discard oldest
+07:19:19.637 > [0m[32mINFO  [0m| ??:??:?? 90 [ExperimentModule] [32mSent test packet 0 to 4294967295
+07:19:19.638 > [0m[32mINFO  [0m| ??:??:?? 90 [ExperimentModule] [32mnb global packets: 2
+07:19:19.639 > [0m[34mDEBUG [0m| ??:??:?? 90 [RadioIf] [34mStarted Tx (id=0xfc303ec6 fr=0x49242450 to=0xffffffff, transport = 0, WantAck=0, HopLim=3 Ch=0x8 encrypted len=33 hopStart=3 relay=0x50 priority=100)
+07:19:19.794 > [0m[34mDEBUG [0m| ??:??:?? 90 [RadioIf] [34m0 packets remain in the TX queue
+07:19:19.795 > [0m[34mDEBUG [0m| ??:??:?? 91 [RadioIf] [34mPacket TX: 477ms
+07:19:20.269 > [0m[34mDEBUG [0m| ??:??:?? 91 [RadioIf] [34mCompleted sending (id=0xfc303ec6 fr=0x49242450 to=0xffffffff, transport = 0, WantAck=0, HopLim=3 Ch=0x8 encrypted len=33 hopStart=3 relay=0x50 priority=100)
+07:19:20.273 > [0m[34mDEBUG [0m| ??:??:?? 93 [RadioIf] [34mCorrected frequency offset: 18.406248
+07:19:22.292 > [0m[34mDEBUG [0m| ??:??:?? 93 [RadioIf] [34mLora RX (id=0xfc303ec6 fr=0x49242450 to=0xffffffff, transport = 0, WantAck=0, HopLim=2 Ch=0x8 encrypted len=33 rxSNR=6 rxRSSI=-14 hopStart=3 relay=0xa2)
+07:19:22.296 > [0m[34mDEBUG [0m| ??:??:?? 93 [RadioIf] [34mPacket RX: 477ms
+07:19:22.296 > [0m[34mDEBUG [0m| ??:??:?? 93 [Router] [34mRx someone rebroadcasting for us (id=0xfc303ec6 fr=0x49242450 to=0xffffffff, transport = 1, WantAck=0, HopLim=2 Ch=0x8 encrypted len=33 rxSNR=6 rxRSSI=-14 hop
+07:19:22.306 > [0m[34mDEBUG [0m| ??:??:?? 93 [Router] [34mDidn't find pending packet
+07:19:22.308 > [0m[32mINFO  [0m| ??:??:?? 93 [Router] [32mPacket History - insert: Reusing slot aged 2.780s TRACE MATCHED PACKET
+07:19:22.310 > [0m[34mDEBUG [0m| ??:??:?? 93 [Router] [34mIgnore dupe incoming msg (id=0xfc303ec6 fr=0x49242450 to=0xffffffff, transport = 1, WantAck=0, HopLim=2 Ch=0x8 encrypted len=33 rxSNR=6 rxRSSI=-14 hopStart=3 
+07:19:22.313 > [0m[34mDEBUG [0m| ??:??:?? 93 [Router] [34mcancelSending id=0xfc303ec6, removed=0
+07:19:22.315 > [0m[34mDEBUG [0m| ??:??:?? 93 [Router] [34mIncoming msg was filtered from 0x49242450
+07:19:22.316 > [0m[34mDEBUG [0m| ??:??:?? 125 [Power] [34mBattery: usbPower=0, isCharging=0, batMv=4009, batPct=83
+07:19:54.570 > [0m[34mDEBUG [0m| ??:??:?? 130 [RadioIf] [34mCorrected frequency offset: 8.718750
+07:19:59.682 > [0m[34mDEBUG [0m| ??:??:?? 130 [RadioIf] [34mLora RX (id=0x6a4f9b5f fr=0x6d4d1ba2 to=0x49242450, transport = 0, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 rxSNR=6.25 rxRSSI=-15 hopStart=3 nextHop=0x50 r
+07:19:59.685 > [0m[34mDEBUG [0m| ??:??:?? 130 [RadioIf] [34mPacket RX: 641ms
+07:19:59.686 > [0m[32mINFO  [0m| ??:??:?? 130 [Router] [32mPacket History - insert: Using new slot @uptime 130.656s TRACE NEW
+07:19:59.694 > [0m[34mDEBUG [0m| ??:??:?? 130 [Router] [34mAttempt PKI decryption
+07:19:59.695 > [0m[32mINFO  [0m| ??:??:?? 130 [Router] [32mRandom nonce value: 319915268
+07:19:59.790 > [0m[34mDEBUG [0m| ??:??:?? 130 [Router] [34mAttempt decrypt with nonce:  5f 9b 4f 6a 04 85 11 13 a2 1b 4d 6d 00
+07:19:59.792 > 
+07:19:59.792 > [0m[34mDEBUG [0m| ??:??:?? 130 [Router] [34mAttempt decrypt with shared_key starting with:  c2 01 58 5c 28 5b e3 58
+07:19:59.795 > 
+07:19:59.795 > [0m[33mWARN  [0m| ??:??:?? 130 [Router] [33mPKC decrypt attempted but failed!
+07:19:59.796 > [0m[33mWARN  [0m| ??:??:?? 130 [Router] [33mNo suitable channel found for decoding, hash was 0x0!
+07:19:59.799 > [0m[34mDEBUG [0m| ??:??:?? 130 [Router] [34mpacket decoding failed or skipped (no PSK?) (id=0x6a4f9b5f fr=0x6d4d1ba2 to=0x49242450, transport = 1, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 rxSNR=6.25 
+07:19:59.802 > [0m[34mDEBUG [0m| ??:??:?? 130 [Router] [34mModule 'routing' wantsPacket=1
+07:19:59.804 > [0m[32mINFO  [0m| ??:??:?? 130 [Router] [32mReceived routing from=0x6d4d1ba2, id=0x6a4f9b5f, portnum=37, payloadlen=4342
+07:19:59.807 > [0m[34mDEBUG [0m| ??:??:?? 130 [Router] [34mRouting sniffing (id=0x6a4f9b5f fr=0x6d4d1ba2 to=0x49242450, transport = 1, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 rxSNR=6.25 rxRSSI=-15 hopStart=3 nextH
+07:19:59.810 > [0m[34mDEBUG [0m| ??:??:?? 130 [Router] [34mPartially randomized packet id 472758983
+07:19:59.811 > [0m[34mDEBUG [0m| ??:??:?? 130 [Router] [34mlocalSend to channel 0
+07:19:59.812 > [0m[32mINFO  [0m| ??:??:?? 130 [Router] [32mPacket History - insert: Using new slot @uptime 130.775s TRACE NEW
+07:19:59.815 > [0m[34mDEBUG [0m| ??:??:?? 130 [Router] [34mSetting next hop for packet with dest 6d4d1ba2 to 0
+07:19:59.816 > [0m[34mDEBUG [0m| ??:??:?? 130 [Router] [34mExpand short PSK #1
+07:19:59.817 > [0m[34mDEBUG [0m| ??:??:?? 130 [Router] [34mUse AES128 key!
+07:19:59.915 > [0m[34mDEBUG [0m| ??:??:?? 130 [Router] [34menqueue for send (id=0x1c2dbac7 fr=0x49242450 to=0x6d4d1ba2, transport = 0, WantAck=0, HopLim=0 Ch=0x8 encrypted len=29 relay=0x50 priority=120)
+07:19:59.918 > [0m[34mDEBUG [0m| ??:??:?? 130 [Router] [34mtxGood=5,txRelay=1,rxGood=5,rxBad=0
+07:19:59.920 > [0m[34mDEBUG [0m| ??:??:?? 130 [Router] [34mDelivering rx packet (id=0x6a4f9b5f fr=0x6d4d1ba2 to=0x49242450, transport = 1, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 rxSNR=6.25 rxRSSI=-15 hopStart=3 n
+07:19:59.924 > [0m[34mDEBUG [0m| ??:??:?? 130 [Router] [34mForwarding to phone (id=0x6a4f9b5f fr=0x6d4d1ba2 to=0x49242450, transport = 1, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 rxSNR=6.25 rxRSSI=-15 hopStart=3 ne
+07:19:59.927 > [0m[34mDEBUG [0m| ??:??:?? 130 [Router] [34mAttempt PKI decryption
+07:19:59.928 > [0m[32mINFO  [0m| ??:??:?? 130 [Router] [32mRandom nonce value: 319915268
+07:19:59.930 > [0m[34mDEBUG [0m| ??:??:?? 130 [Router] [34mAttempt decrypt with nonce:  5f 9b 4f 6a 04 85 11 13 a2 1b 4d 6d 00
+07:20:00.025 > 
+07:20:00.025 > [0m[34mDEBUG [0m| ??:??:?? 130 [Router] [34mAttempt decrypt with shared_key starting with:  c2 01 58 5c 28 5b e3 58
+07:20:00.029 > 
+07:20:00.029 > [0m[33mWARN  [0m| ??:??:?? 130 [Router] [33mPKC decrypt attempted but failed!
+07:20:00.030 > [0m[33mWARN  [0m| ??:??:?? 130 [Router] [33mNo suitable channel found for decoding, hash was 0x0!
+07:20:00.032 > [0m[34mDEBUG [0m| ??:??:?? 130 [Router] [34mModule 'routing' considered
+07:20:00.033 > [0m[34mDEBUG [0m| ??:??:?? 131 [RadioIf] [34mStarted Tx (id=0x1c2dbac7 fr=0x49242450 to=0x6d4d1ba2, transport = 0, WantAck=0, HopLim=0 Ch=0x8 encrypted len=29 relay=0x50 priority=120)
+07:20:00.080 > [0m[34mDEBUG [0m| ??:??:?? 131 [RadioIf] [34m0 packets remain in the TX queue
+07:20:00.081 > [0m[34mDEBUG [0m| ??:??:?? 131 [RadioIf] [34mPacket TX: 477ms
+07:20:00.555 > [0m[34mDEBUG [0m| ??:??:?? 131 [RadioIf] [34mCompleted sending (id=0x1c2dbac7 fr=0x49242450 to=0x6d4d1ba2, transport = 0, WantAck=0, HopLim=0 Ch=0x8 encrypted len=29 relay=0x50 priority=120)
+07:20:00.559 > [0m[32mINFO  [0m| ??:??:?? 135 [ExperimentModule] [32m dest: 1833769890, globalCounter:2, LEN(noded): 2 
+07:20:04.639 > [0m[34mDEBUG [0m| ??:??:?? 135 [ExperimentModule] [34mPartially randomized packet id 3350016712
+07:20:04.641 > [0m[34mDEBUG [0m| ??:??:?? 135 [ExperimentModule] [34mIgnore update from self
+07:20:04.642 > [0m[34mDEBUG [0m| ??:??:?? 135 [ExperimentModule] [34mlocalSend to channel 0
+07:20:04.644 > [0m[32mINFO  [0m| ??:??:?? 135 [ExperimentModule] [32mPacket History - insert: Using new slot @uptime 135.607s TRACE NEW
+07:20:04.646 > [0m[34mDEBUG [0m| ??:??:?? 135 [ExperimentModule] [34mSetting next hop for packet with dest 6d4d1ba2 to 0
+07:20:04.647 > [0m[34mDEBUG [0m| ??:??:?? 135 [ExperimentModule] [34mUse PKI!
+07:20:04.648 > [0m[34mDEBUG [0m| ??:??:?? 135 [ExperimentModule] [34mRandom nonce value: 1870525382
+07:20:04.744 > [0m[34mDEBUG [0m| ??:??:?? 135 [ExperimentModule] [34mAttempt encrypt with nonce:  c8 32 ad c7 c6 f3 7d 6f 50 24 24 49 00
+07:20:04.746 > 
+07:20:04.746 > [0m[34mDEBUG [0m| ??:??:?? 135 [ExperimentModule] [34mAttempt encrypt with shared_key starting with:  c2 01 58 5c 28 5b e3 58
+07:20:04.750 > 
+07:20:04.750 > [0m[34mDEBUG [0m| ??:??:?? 135 [ExperimentModule] [34menqueue for send (id=0xc7ad32c8 fr=0x49242450 to=0x6d4d1ba2, transport = 0, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 hopStart=3 relay=0x50 priority=100)
+07:20:04.753 > [0m[34mDEBUG [0m| ??:??:?? 135 [ExperimentModule] [34mtxGood=6,txRelay=1,rxGood=5,rxBad=0
+07:20:04.754 > [0m[32mINFO  [0m| ??:??:?? 135 [ExperimentModule] [32mtophone queue status queue is full, discard oldest
+07:20:04.757 > [0m[32mINFO  [0m| ??:??:?? 135 [ExperimentModule] [32mSent test packet 1 to 1833769890
+07:20:04.758 > [0m[32mINFO  [0m| ??:??:?? 135 [ExperimentModule] [32mnb global packets: 3
+07:20:04.759 > [0m[34mDEBUG [0m| ??:??:?? 135 [RadioIf] [34mStarted Tx (id=0xc7ad32c8 fr=0x49242450 to=0x6d4d1ba2, transport = 0, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 hopStart=3 relay=0x50 priority=100)
+07:20:04.830 > [0m[34mDEBUG [0m| ??:??:?? 135 [RadioIf] [34m0 packets remain in the TX queue
+07:20:04.830 > [0m[34mDEBUG [0m| ??:??:?? 136 [RadioIf] [34mPacket TX: 641ms
+07:20:05.467 > [0m[34mDEBUG [0m| ??:??:?? 136 [RadioIf] [34mCompleted sending (id=0xc7ad32c8 fr=0x49242450 to=0x6d4d1ba2, transport = 0, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 hopStart=3 relay=0x50 priority=100)
+07:20:05.471 > [0m[34mDEBUG [0m| ??:??:?? 175 [RadioIf] [34mCorrected frequency offset: 8.718750
+07:20:44.657 > [0m[34mDEBUG [0m| ??:??:?? 175 [RadioIf] [34mLora RX (id=0xfb04bb60 fr=0x6d4d1ba2 to=0xffffffff, transport = 0, WantAck=0, HopLim=3 Ch=0x8 encrypted len=33 rxSNR=6.25 rxRSSI=-15 hopStart=3 relay=0xa2)
+07:20:44.660 > [0m[34mDEBUG [0m| ??:??:?? 175 [RadioIf] [34mPacket RX: 477ms
+07:20:44.660 > [0m[32mINFO  [0m| ??:??:?? 175 [Router] [32mPacket History - insert: Using new slot @uptime 175.631s TRACE NEW
+07:20:44.669 > [0m[34mDEBUG [0m| ??:??:?? 175 [Router] [34mUse channel 0 (hash 0x8)
+07:20:44.670 > [0m[34mDEBUG [0m| ??:??:?? 175 [Router] [34mExpand short PSK #1
+07:20:44.671 > [0m[34mDEBUG [0m| ??:??:?? 175 [Router] [34mUse AES128 key!
+07:20:44.770 > [0m[34mDEBUG [0m| ??:??:?? 175 [Router] [34mdecoded message (id=0xfb04bb60 fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=3 Ch=0x0 Portnum=1 rxSNR=6.25 rxRSSI=-15 hopStart=3 relay=0xa2)
+07:20:44.773 > [0m[34mDEBUG [0m| ??:??:?? 175 [Router] [34mhandleReceived(REMOTE) (id=0xfb04bb60 fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=3 Ch=0x0 Portnum=1 rxSNR=6.25 rxRSSI=-15 hopStart=3 relay=
+07:20:44.777 > [0m[34mDEBUG [0m| ??:??:?? 175 [Router] [34mModule 'ExperimentModule' wantsPacket=1
+07:20:44.779 > [0m[32mINFO  [0m| ??:??:?? 175 [Router] [32mReceived test packet from 1833769890
+07:20:44.780 > [0m[34mDEBUG [0m| ??:??:?? 175 [Router] [34mModule 'ExperimentModule' considered
+07:20:44.781 > [0m[34mDEBUG [0m| ??:??:?? 175 [Router] [34mModule 'text' wantsPacket=1
+07:20:44.782 > [0m[32mINFO  [0m| ??:??:?? 175 [Router] [32mReceived text msg from=0x6d4d1ba2, id=0xfb04bb60, msg=test: 7: -1
+07:20:44.785 > [0m[34mDEBUG [0m| ??:??:?? 175 [Router] [34mState: ON
+07:20:44.786 > [0m[34mDEBUG [0m| ??:??:?? 175 [Router] [34mModule 'text' considered
+07:20:44.787 > [0m[34mDEBUG [0m| ??:??:?? 175 [Router] [34mModule 'ExternalNotificationModule' wantsPacket=1
+07:20:44.788 > [0m[32mINFO  [0m| ??:??:?? 175 [Router] [32mExternal Notification Module Disabled or muted
+07:20:44.791 > [0m[34mDEBUG [0m| ??:??:?? 175 [Router] [34mModule 'ExternalNotificationModule' considered
+07:20:44.792 > [0m[34mDEBUG [0m| ??:??:?? 175 [Router] [34mModule 'routing' wantsPacket=1
+07:20:44.793 > [0m[32mINFO  [0m| ??:??:?? 175 [Router] [32mReceived routing from=0x6d4d1ba2, id=0xfb04bb60, portnum=1, payloadlen=11
+07:20:44.796 > [0m[34mDEBUG [0m| ??:??:?? 175 [Router] [34mRouting sniffing (id=0xfb04bb60 fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=3 Ch=0x0 Portnum=1 rxSNR=6.25 rxRSSI=-15 hopStart=3 relay=0xa2)
+07:20:44.799 > [0m[32mINFO  [0m| ??:??:?? 175 [Router] [32mRebroadcast received message coming from a2
+07:20:44.800 > [0m[32mINFO  [0m| ??:??:?? 175 [Router] [32mPacket History - insert: Reusing slot aged 0.134s TRACE MATCHED PACKET
+07:20:44.803 > [0m[34mDEBUG [0m| ??:??:?? 175 [Router] [34mExpand short PSK #1
+07:20:44.804 > [0m[34mDEBUG [0m| ??:??:?? 175 [Router] [34mUse AES128 key!
+07:20:44.902 > [0m[34mDEBUG [0m| ??:??:?? 175 [Router] [34menqueue for send (id=0xfb04bb60 fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=2 Ch=0x8 encrypted len=33 rxSNR=6.25 rxRSSI=-15 hopStart=3 relay
+07:20:44.906 > [0m[34mDEBUG [0m| ??:??:?? 175 [Router] [34mtxGood=7,txRelay=1,rxGood=6,rxBad=0
+07:20:44.907 > [0m[34mDEBUG [0m| ??:??:?? 175 [Router] [34mrx_snr found. hop_limit:2 rx_snr:6.250000
+07:20:44.909 > [0m[34mDEBUG [0m| ??:??:?? 175 [Router] [34mrx_snr found in packet. Setting tx delay:3304
+07:20:44.911 > [0m[34mDEBUG [0m| ??:??:?? 175 [Router] [34mDelivering rx packet (id=0xfb04bb60 fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=3 Ch=0x0 Portnum=1 rxSNR=6.25 rxRSSI=-15 hopStart=3 relay=0x
+07:20:44.914 > [0m[34mDEBUG [0m| ??:??:?? 175 [Router] [34mUpdate DB node 0x6d4d1ba2, rx_time=0
+07:20:44.915 > [0m[32mINFO  [0m| ??:??:?? 175 [Router] [32mSort took 0 milliseconds
+07:20:44.917 > [0m[34mDEBUG [0m| ??:??:?? 175 [Router] [34mForwarding to phone (id=0xfb04bb60 fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=3 Ch=0x0 Portnum=1 rxSNR=6.25 rxRSSI=-15 hopStart=3 relay=0xa
+07:20:44.920 > [0m[34mDEBUG [0m| ??:??:?? 175 [Router] [34mModule 'routing' considered
+07:20:44.921 > [0m[34mDEBUG [0m| ??:??:?? 179 [RadioIf] [34mStarted Tx (id=0xfb04bb60 fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=2 Ch=0x8 encrypted len=33 rxSNR=6.25 rxRSSI=-15 hopStart=3 relay=0x50 
+07:20:48.261 > [0m[34mDEBUG [0m| ??:??:?? 179 [RadioIf] [34m0 packets remain in the TX queue
+07:20:48.263 > [0m[34mDEBUG [0m| ??:??:?? 179 [RadioIf] [34mPacket TX: 477ms
+07:20:48.736 > [0m[34mDEBUG [0m| ??:??:?? 179 [RadioIf] [34mCompleted sending (id=0xfb04bb60 fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=2 Ch=0x8 encrypted len=33 rxSNR=6.25 rxRSSI=-15 hopStart=3 rela
+07:20:48.740 > [0m[32mINFO  [0m| ??:??:?? 180 [ExperimentModule] [32m dest: 4294967295, globalCounter:3, LEN(noded): 2 
+07:20:49.759 > [0m[34mDEBUG [0m| ??:??:?? 180 [ExperimentModule] [34mPartially randomized packet id 1577942729
+07:20:49.761 > [0m[34mDEBUG [0m| ??:??:?? 180 [ExperimentModule] [34mIgnore update from self
+07:20:49.762 > [0m[34mDEBUG [0m| ??:??:?? 180 [ExperimentModule] [34mhandleReceived(LOCAL) (id=0x5e0d7ec9 fr=0x49242450 to=0xffffffff, transport = 0, WantAck=0, HopLim=3 Ch=0x0 Portnum=1)
+07:20:49.765 > [0m[34mDEBUG [0m| ??:??:?? 180 [ExperimentModule] [34mNo modules interested in portnum=1, src=LOCAL
+07:20:49.767 > [0m[32mINFO  [0m| ??:??:?? 180 [ExperimentModule] [32mPacket History - insert: Using new slot @uptime 180.731s TRACE NEW
+07:20:49.769 > [0m[34mDEBUG [0m| ??:??:?? 180 [ExperimentModule] [34mExpand short PSK #1
+07:20:49.771 > [0m[34mDEBUG [0m| ??:??:?? 180 [ExperimentModule] [34mUse AES128 key!
+07:20:49.869 > [0m[34mDEBUG [0m| ??:??:?? 180 [ExperimentModule] [34menqueue for send (id=0x5e0d7ec9 fr=0x49242450 to=0xffffffff, transport = 0, WantAck=0, HopLim=3 Ch=0x8 encrypted len=33 hopStart=3 relay=0x50 priority=100)
+07:20:49.872 > [0m[34mDEBUG [0m| ??:??:?? 180 [ExperimentModule] [34mtxGood=8,txRelay=2,rxGood=6,rxBad=0
+07:20:49.873 > [0m[32mINFO  [0m| ??:??:?? 180 [ExperimentModule] [32mtophone queue status queue is full, discard oldest
+07:20:49.876 > [0m[32mINFO  [0m| ??:??:?? 180 [ExperimentModule] [32mSent test packet 1 to 4294967295
+07:20:49.877 > [0m[32mINFO  [0m| ??:??:?? 180 [ExperimentModule] [32mnb global packets: 4
+07:20:49.878 > [0m[34mDEBUG [0m| ??:??:?? 180 [RadioIf] [34mStarted Tx (id=0x5e0d7ec9 fr=0x49242450 to=0xffffffff, transport = 0, WantAck=0, HopLim=3 Ch=0x8 encrypted len=33 hopStart=3 relay=0x50 priority=100)
+07:20:49.956 > [0m[34mDEBUG [0m| ??:??:?? 180 [RadioIf] [34m0 packets remain in the TX queue
+07:20:49.957 > [0m[34mDEBUG [0m| ??:??:?? 181 [RadioIf] [34mPacket TX: 477ms
+07:20:50.431 > [0m[34mDEBUG [0m| ??:??:?? 181 [RadioIf] [34mCompleted sending (id=0x5e0d7ec9 fr=0x49242450 to=0xffffffff, transport = 0, WantAck=0, HopLim=3 Ch=0x8 encrypted len=33 hopStart=3 relay=0x50 priority=100)
+07:20:50.435 > [0m[34mDEBUG [0m| ??:??:?? 184 [RadioIf] [34mCorrected frequency offset: 12.593750
+07:20:53.538 > [0m[34mDEBUG [0m| ??:??:?? 184 [RadioIf] [34mLora RX (id=0x5e0d7ec9 fr=0x49242450 to=0xffffffff, transport = 0, WantAck=0, HopLim=2 Ch=0x8 encrypted len=33 rxSNR=6.25 rxRSSI=-15 hopStart=3 relay=0xa2)
+07:20:53.541 > [0m[34mDEBUG [0m| ??:??:?? 184 [RadioIf] [34mPacket RX: 477ms
+07:20:53.542 > [0m[34mDEBUG [0m| ??:??:?? 184 [Router] [34mRx someone rebroadcasting for us (id=0x5e0d7ec9 fr=0x49242450 to=0xffffffff, transport = 1, WantAck=0, HopLim=2 Ch=0x8 encrypted len=33 rxSNR=6.25 rxRSSI=-15 
+07:20:53.551 > [0m[34mDEBUG [0m| ??:??:?? 184 [Router] [34mDidn't find pending packet
+07:20:53.554 > [0m[32mINFO  [0m| ??:??:?? 184 [Router] [32mPacket History - insert: Reusing slot aged 3.787s TRACE MATCHED PACKET
+07:20:53.555 > [0m[34mDEBUG [0m| ??:??:?? 184 [Router] [34mIgnore dupe incoming msg (id=0x5e0d7ec9 fr=0x49242450 to=0xffffffff, transport = 1, WantAck=0, HopLim=2 Ch=0x8 encrypted len=33 rxSNR=6.25 rxRSSI=-15 hopStart
+07:20:53.559 > [0m[34mDEBUG [0m| ??:??:?? 184 [Router] [34mcancelSending id=0x5e0d7ec9, removed=0
+07:20:53.561 > [0m[34mDEBUG [0m| ??:??:?? 184 [Router] [34mIncoming msg was filtered from 0x49242450
+07:20:53.562 > [0m[34mDEBUG [0m| ??:??:?? 185 [Power] [34mBattery: usbPower=0, isCharging=0, batMv=3972, batPct=78
+07:20:54.600 > [0m[34mDEBUG [0m| ??:??:?? 220 [RadioIf] [34mCorrected frequency offset: 6.781250
+07:21:29.830 > [0m[34mDEBUG [0m| ??:??:?? 220 [RadioIf] [34mLora RX (id=0x1634ab61 fr=0x6d4d1ba2 to=0x49242450, transport = 0, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 rxSNR=6.25 rxRSSI=-15 hopStart=3 nextHop=0x50 r
+07:21:29.833 > [0m[34mDEBUG [0m| ??:??:?? 220 [RadioIf] [34mPacket RX: 641ms
+07:21:29.833 > [0m[32mINFO  [0m| ??:??:?? 220 [Router] [32mPacket History - insert: Using new slot @uptime 220.805s TRACE NEW
+07:21:29.842 > [0m[34mDEBUG [0m| ??:??:?? 220 [Router] [34mAttempt PKI decryption
+07:21:29.843 > [0m[32mINFO  [0m| ??:??:?? 220 [Router] [32mRandom nonce value: 1131136039
+07:21:29.938 > [0m[34mDEBUG [0m| ??:??:?? 220 [Router] [34mAttempt decrypt with nonce:  61 ab 34 16 27 c4 6b 43 a2 1b 4d 6d 00
+07:21:29.940 > 
+07:21:29.940 > [0m[34mDEBUG [0m| ??:??:?? 220 [Router] [34mAttempt decrypt with shared_key starting with:  c2 01 58 5c 28 5b e3 58
+07:21:29.943 > 
+07:21:29.943 > [0m[33mWARN  [0m| ??:??:?? 220 [Router] [33mPKC decrypt attempted but failed!
+07:21:29.944 > [0m[33mWARN  [0m| ??:??:?? 220 [Router] [33mNo suitable channel found for decoding, hash was 0x0!
+07:21:29.947 > [0m[34mDEBUG [0m| ??:??:?? 220 [Router] [34mpacket decoding failed or skipped (no PSK?) (id=0x1634ab61 fr=0x6d4d1ba2 to=0x49242450, transport = 1, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 rxSNR=6.25 
+07:21:29.950 > [0m[34mDEBUG [0m| ??:??:?? 220 [Router] [34mModule 'routing' wantsPacket=1
+07:21:29.952 > [0m[32mINFO  [0m| ??:??:?? 220 [Router] [32mReceived routing from=0x6d4d1ba2, id=0x1634ab61, portnum=37, payloadlen=50814
+07:21:29.955 > [0m[34mDEBUG [0m| ??:??:?? 220 [Router] [34mRouting sniffing (id=0x1634ab61 fr=0x6d4d1ba2 to=0x49242450, transport = 1, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 rxSNR=6.25 rxRSSI=-15 hopStart=3 nextH
+07:21:29.957 > [0m[34mDEBUG [0m| ??:??:?? 220 [Router] [34mPartially randomized packet id 393609930
+07:21:29.959 > [0m[34mDEBUG [0m| ??:??:?? 220 [Router] [34mlocalSend to channel 0
+07:21:29.960 > [0m[32mINFO  [0m| ??:??:?? 220 [Router] [32mPacket History - insert: Using new slot @uptime 220.925s TRACE NEW
+07:21:29.963 > [0m[34mDEBUG [0m| ??:??:?? 220 [Router] [34mSetting next hop for packet with dest 6d4d1ba2 to 0
+07:21:29.964 > [0m[34mDEBUG [0m| ??:??:?? 220 [Router] [34mExpand short PSK #1
+07:21:29.965 > [0m[34mDEBUG [0m| ??:??:?? 220 [Router] [34mUse AES128 key!
+07:21:30.064 > [0m[34mDEBUG [0m| ??:??:?? 221 [Router] [34menqueue for send (id=0x177602ca fr=0x49242450 to=0x6d4d1ba2, transport = 0, WantAck=0, HopLim=0 Ch=0x8 encrypted len=29 relay=0x50 priority=120)
+07:21:30.067 > [0m[34mDEBUG [0m| ??:??:?? 221 [Router] [34mtxGood=9,txRelay=2,rxGood=8,rxBad=0
+07:21:30.068 > [0m[34mDEBUG [0m| ??:??:?? 221 [Router] [34mDelivering rx packet (id=0x1634ab61 fr=0x6d4d1ba2 to=0x49242450, transport = 1, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 rxSNR=6.25 rxRSSI=-15 hopStart=3 n
+07:21:30.072 > [0m[34mDEBUG [0m| ??:??:?? 221 [Router] [34mForwarding to phone (id=0x1634ab61 fr=0x6d4d1ba2 to=0x49242450, transport = 1, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 rxSNR=6.25 rxRSSI=-15 hopStart=3 ne
+07:21:30.076 > [0m[34mDEBUG [0m| ??:??:?? 221 [Router] [34mAttempt PKI decryption
+07:21:30.077 > [0m[32mINFO  [0m| ??:??:?? 221 [Router] [32mRandom nonce value: 1131136039
+07:21:30.171 > [0m[34mDEBUG [0m| ??:??:?? 221 [Router] [34mAttempt decrypt with nonce:  61 ab 34 16 27 c4 6b 43 a2 1b 4d 6d 00
+07:21:30.174 > 
+07:21:30.174 > [0m[34mDEBUG [0m| ??:??:?? 221 [Router] [34mAttempt decrypt with shared_key starting with:  c2 01 58 5c 28 5b e3 58
+07:21:30.175 > 
+07:21:30.175 > [0m[33mWARN  [0m| ??:??:?? 221 [Router] [33mPKC decrypt attempted but failed!
+07:21:30.179 > [0m[33mWARN  [0m| ??:??:?? 221 [Router] [33mNo suitable channel found for decoding, hash was 0x0!
+07:21:30.180 > [0m[34mDEBUG [0m| ??:??:?? 221 [Router] [34mModule 'routing' considered
+07:21:30.181 > [0m[34mDEBUG [0m| ??:??:?? 221 [RadioIf] [34mStarted Tx (id=0x177602ca fr=0x49242450 to=0x6d4d1ba2, transport = 0, WantAck=0, HopLim=0 Ch=0x8 encrypted len=29 relay=0x50 priority=120)
+07:21:30.228 > [0m[34mDEBUG [0m| ??:??:?? 221 [RadioIf] [34m0 packets remain in the TX queue
+07:21:30.229 > [0m[34mDEBUG [0m| ??:??:?? 221 [RadioIf] [34mPacket TX: 477ms
+07:21:30.703 > [0m[34mDEBUG [0m| ??:??:?? 221 [RadioIf] [34mCompleted sending (id=0x177602ca fr=0x49242450 to=0x6d4d1ba2, transport = 0, WantAck=0, HopLim=0 Ch=0x8 encrypted len=29 relay=0x50 priority=120)
+07:21:30.707 > [0m[32mINFO  [0m| ??:??:?? 225 [ExperimentModule] [32m dest: 1833769890, globalCounter:4, LEN(noded): 2 
+07:21:34.879 > [0m[34mDEBUG [0m| ??:??:?? 225 [ExperimentModule] [34mPartially randomized packet id 1254575819
+07:21:34.880 > [0m[34mDEBUG [0m| ??:??:?? 225 [ExperimentModule] [34mIgnore update from self
+07:21:34.882 > [0m[34mDEBUG [0m| ??:??:?? 225 [ExperimentModule] [34mlocalSend to channel 0
+07:21:34.883 > [0m[32mINFO  [0m| ??:??:?? 225 [ExperimentModule] [32mPacket History - insert: Using new slot @uptime 225.849s TRACE NEW
+07:21:34.886 > [0m[34mDEBUG [0m| ??:??:?? 225 [ExperimentModule] [34mSetting next hop for packet with dest 6d4d1ba2 to 0
+07:21:34.887 > [0m[34mDEBUG [0m| ??:??:?? 225 [ExperimentModule] [34mUse PKI!
+07:21:34.888 > [0m[34mDEBUG [0m| ??:??:?? 225 [ExperimentModule] [34mRandom nonce value: 604433909
+07:21:34.984 > [0m[34mDEBUG [0m| ??:??:?? 225 [ExperimentModule] [34mAttempt encrypt with nonce:  cb 4e c7 4a f5 ed 06 24 50 24 24 49 00
+07:21:34.985 > 
+07:21:34.986 > [0m[34mDEBUG [0m| ??:??:?? 225 [ExperimentModule] [34mAttempt encrypt with shared_key starting with:  c2 01 58 5c 28 5b e3 58
+07:21:34.987 > 
+07:21:34.987 > [0m[34mDEBUG [0m| ??:??:?? 225 [ExperimentModule] [34menqueue for send (id=0x4ac74ecb fr=0x49242450 to=0x6d4d1ba2, transport = 0, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 hopStart=3 relay=0x50 priority=100)
+07:21:34.993 > [0m[34mDEBUG [0m| ??:??:?? 225 [ExperimentModule] [34mtxGood=10,txRelay=2,rxGood=8,rxBad=0
+07:21:34.994 > [0m[32mINFO  [0m| ??:??:?? 225 [ExperimentModule] [32mtophone queue status queue is full, discard oldest
+07:21:34.997 > [0m[32mINFO  [0m| ??:??:?? 225 [ExperimentModule] [32mSent test packet 2 to 1833769890
+07:21:34.998 > [0m[32mINFO  [0m| ??:??:?? 225 [ExperimentModule] [32mnb global packets: 5
+07:21:34.998 > [0m[34mDEBUG [0m| ??:??:?? 226 [RadioIf] [34mStarted Tx (id=0x4ac74ecb fr=0x49242450 to=0x6d4d1ba2, transport = 0, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 hopStart=3 relay=0x50 priority=100)
+07:21:35.210 > [0m[34mDEBUG [0m| ??:??:?? 226 [RadioIf] [34m0 packets remain in the TX queue
+07:21:35.211 > [0m[34mDEBUG [0m| ??:??:?? 226 [RadioIf] [34mPacket TX: 641ms
+07:21:35.848 > [0m[34mDEBUG [0m| ??:??:?? 226 [RadioIf] [34mCompleted sending (id=0x4ac74ecb fr=0x49242450 to=0x6d4d1ba2, transport = 0, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 hopStart=3 relay=0x50 priority=100)
+07:21:35.852 > [0m[34mDEBUG [0m| ??:??:?? 245 [Power] [34mBattery: usbPower=0, isCharging=0, batMv=3818, batPct=62
+07:21:54.629 > [0m[34mDEBUG [0m| ??:??:?? 266 [RadioIf] [34mCorrected frequency offset: 6.781250
+07:22:15.160 > [0m[34mDEBUG [0m| ??:??:?? 266 [RadioIf] [34mLora RX (id=0x049aef62 fr=0x6d4d1ba2 to=0xffffffff, transport = 0, WantAck=0, HopLim=3 Ch=0x8 encrypted len=33 rxSNR=6.5 rxRSSI=-14 hopStart=3 relay=0xa2)
+07:22:15.163 > [0m[34mDEBUG [0m| ??:??:?? 266 [RadioIf] [34mPacket RX: 477ms
+07:22:15.164 > [0m[32mINFO  [0m| ??:??:?? 266 [Router] [32mPacket History - insert: Using new slot @uptime 266.137s TRACE NEW
+07:22:15.172 > [0m[34mDEBUG [0m| ??:??:?? 266 [Router] [34mUse channel 0 (hash 0x8)
+07:22:15.173 > [0m[34mDEBUG [0m| ??:??:?? 266 [Router] [34mExpand short PSK #1
+07:22:15.174 > [0m[34mDEBUG [0m| ??:??:?? 266 [Router] [34mUse AES128 key!
+07:22:15.273 > [0m[34mDEBUG [0m| ??:??:?? 266 [Router] [34mdecoded message (id=0x049aef62 fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=3 Ch=0x0 Portnum=1 rxSNR=6.5 rxRSSI=-14 hopStart=3 relay=0xa2)
+07:22:15.277 > [0m[34mDEBUG [0m| ??:??:?? 266 [Router] [34mhandleReceived(REMOTE) (id=0x049aef62 fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=3 Ch=0x0 Portnum=1 rxSNR=6.5 rxRSSI=-14 hopStart=3 relay=0
+07:22:15.280 > [0m[34mDEBUG [0m| ??:??:?? 266 [Router] [34mModule 'ExperimentModule' wantsPacket=1
+07:22:15.281 > [0m[32mINFO  [0m| ??:??:?? 266 [Router] [32mReceived test packet from 1833769890
+07:22:15.283 > [0m[34mDEBUG [0m| ??:??:?? 266 [Router] [34mModule 'ExperimentModule' considered
+07:22:15.285 > [0m[34mDEBUG [0m| ??:??:?? 266 [Router] [34mModule 'text' wantsPacket=1
+07:22:15.286 > [0m[32mINFO  [0m| ??:??:?? 266 [Router] [32mReceived text msg from=0x6d4d1ba2, id=0x49aef62, msg=test: 8: -1
+07:22:15.288 > [0m[34mDEBUG [0m| ??:??:?? 266 [Router] [34mState: ON
+07:22:15.289 > [0m[34mDEBUG [0m| ??:??:?? 266 [Router] [34mModule 'text' considered
+07:22:15.291 > [0m[34mDEBUG [0m| ??:??:?? 266 [Router] [34mModule 'ExternalNotificationModule' wantsPacket=1
+07:22:15.292 > [0m[32mINFO  [0m| ??:??:?? 266 [Router] [32mExternal Notification Module Disabled or muted
+07:22:15.293 > [0m[34mDEBUG [0m| ??:??:?? 266 [Router] [34mModule 'ExternalNotificationModule' considered
+07:22:15.295 > [0m[34mDEBUG [0m| ??:??:?? 266 [Router] [34mModule 'routing' wantsPacket=1
+07:22:15.296 > [0m[32mINFO  [0m| ??:??:?? 266 [Router] [32mReceived routing from=0x6d4d1ba2, id=0x49aef62, portnum=1, payloadlen=11
+07:22:15.299 > [0m[34mDEBUG [0m| ??:??:?? 266 [Router] [34mRouting sniffing (id=0x049aef62 fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=3 Ch=0x0 Portnum=1 rxSNR=6.5 rxRSSI=-14 hopStart=3 relay=0xa2)
+07:22:15.302 > [0m[32mINFO  [0m| ??:??:?? 266 [Router] [32mRebroadcast received message coming from a2
+07:22:15.303 > [0m[32mINFO  [0m| ??:??:?? 266 [Router] [32mPacket History - insert: Reusing slot aged 0.133s TRACE MATCHED PACKET
+07:22:15.306 > [0m[34mDEBUG [0m| ??:??:?? 266 [Router] [34mExpand short PSK #1
+07:22:15.307 > [0m[34mDEBUG [0m| ??:??:?? 266 [Router] [34mUse AES128 key!
+07:22:15.406 > [0m[34mDEBUG [0m| ??:??:?? 266 [Router] [34menqueue for send (id=0x049aef62 fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=2 Ch=0x8 encrypted len=33 rxSNR=6.5 rxRSSI=-14 hopStart=3 relay=
+07:22:15.409 > [0m[34mDEBUG [0m| ??:??:?? 266 [Router] [34mtxGood=11,txRelay=2,rxGood=9,rxBad=0
+07:22:15.410 > [0m[34mDEBUG [0m| ??:??:?? 266 [Router] [34mrx_snr found. hop_limit:2 rx_snr:6.500000
+07:22:15.412 > [0m[34mDEBUG [0m| ??:??:?? 266 [Router] [34mrx_snr found in packet. Setting tx delay:616
+07:22:15.414 > [0m[34mDEBUG [0m| ??:??:?? 266 [Router] [34mDelivering rx packet (id=0x049aef62 fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=3 Ch=0x0 Portnum=1 rxSNR=6.5 rxRSSI=-14 hopStart=3 relay=0xa
+07:22:15.417 > [0m[34mDEBUG [0m| ??:??:?? 266 [Router] [34mUpdate DB node 0x6d4d1ba2, rx_time=0
+07:22:15.418 > [0m[32mINFO  [0m| ??:??:?? 266 [Router] [32mSort took 0 milliseconds
+07:22:15.420 > [0m[34mDEBUG [0m| ??:??:?? 266 [Router] [34mForwarding to phone (id=0x049aef62 fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=3 Ch=0x0 Portnum=1 rxSNR=6.5 rxRSSI=-14 hopStart=3 relay=0xa2
+07:22:15.423 > [0m[34mDEBUG [0m| ??:??:?? 266 [Router] [34mModule 'routing' considered
+07:22:15.424 > [0m[34mDEBUG [0m| ??:??:?? 267 [RadioIf] [34mStarted Tx (id=0x049aef62 fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=2 Ch=0x8 encrypted len=33 rxSNR=6.5 rxRSSI=-14 hopStart=3 relay=0x50 p
+07:22:16.084 > [0m[34mDEBUG [0m| ??:??:?? 267 [RadioIf] [34m0 packets remain in the TX queue
+07:22:16.085 > [0m[34mDEBUG [0m| ??:??:?? 267 [RadioIf] [34mPacket TX: 477ms
+07:22:16.558 > [0m[34mDEBUG [0m| ??:??:?? 267 [RadioIf] [34mCompleted sending (id=0x049aef62 fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=2 Ch=0x8 encrypted len=33 rxSNR=6.5 rxRSSI=-14 hopStart=3 relay
+07:22:16.562 > [0m[32mINFO  [0m| ??:??:?? 270 [ExperimentModule] [32m dest: 4294967295, globalCounter:5, LEN(noded): 2 
+07:22:19.999 > [0m[34mDEBUG [0m| ??:??:?? 270 [ExperimentModule] [34mPartially randomized packet id 3160400588
+07:22:20.000 > [0m[34mDEBUG [0m| ??:??:?? 270 [ExperimentModule] [34mIgnore update from self
+07:22:20.003 > [0m[34mDEBUG [0m| ??:??:?? 270 [ExperimentModule] [34mhandleReceived(LOCAL) (id=0xbc5fe2cc fr=0x49242450 to=0xffffffff, transport = 0, WantAck=0, HopLim=3 Ch=0x0 Portnum=1)
+07:22:20.005 > [0m[34mDEBUG [0m| ??:??:?? 270 [ExperimentModule] [34mNo modules interested in portnum=1, src=LOCAL
+07:22:20.007 > [0m[32mINFO  [0m| ??:??:?? 270 [ExperimentModule] [32mPacket History - insert: Using new slot @uptime 270.974s TRACE NEW
+07:22:20.009 > [0m[34mDEBUG [0m| ??:??:?? 270 [ExperimentModule] [34mExpand short PSK #1
+07:22:20.011 > [0m[34mDEBUG [0m| ??:??:?? 270 [ExperimentModule] [34mUse AES128 key!
+07:22:20.109 > [0m[34mDEBUG [0m| ??:??:?? 271 [ExperimentModule] [34menqueue for send (id=0xbc5fe2cc fr=0x49242450 to=0xffffffff, transport = 0, WantAck=0, HopLim=3 Ch=0x8 encrypted len=33 hopStart=3 relay=0x50 priority=100)
+07:22:20.112 > [0m[34mDEBUG [0m| ??:??:?? 271 [ExperimentModule] [34mtxGood=12,txRelay=3,rxGood=9,rxBad=0
+07:22:20.114 > [0m[32mINFO  [0m| ??:??:?? 271 [ExperimentModule] [32mtophone queue status queue is full, discard oldest
+07:22:20.116 > [0m[32mINFO  [0m| ??:??:?? 271 [ExperimentModule] [32mSent test packet 2 to 4294967295
+07:22:20.117 > [0m[32mINFO  [0m| ??:??:?? 271 [ExperimentModule] [32mnb global packets: 6
+07:22:20.118 > [0m[34mDEBUG [0m| ??:??:?? 271 [RadioIf] [34mStarted Tx (id=0xbc5fe2cc fr=0x49242450 to=0xffffffff, transport = 0, WantAck=0, HopLim=3 Ch=0x8 encrypted len=33 hopStart=3 relay=0x50 priority=100)
+07:22:20.166 > [0m[34mDEBUG [0m| ??:??:?? 271 [RadioIf] [34m0 packets remain in the TX queue
+07:22:20.167 > [0m[34mDEBUG [0m| ??:??:?? 271 [RadioIf] [34mPacket TX: 477ms
+07:22:20.641 > [0m[34mDEBUG [0m| ??:??:?? 271 [RadioIf] [34mCompleted sending (id=0xbc5fe2cc fr=0x49242450 to=0xffffffff, transport = 0, WantAck=0, HopLim=3 Ch=0x8 encrypted len=33 hopStart=3 relay=0x50 priority=100)
+07:22:20.644 > [0m[34mDEBUG [0m| ??:??:?? 275 [RadioIf] [34mCorrected frequency offset: 10.656249
+07:22:24.364 > [0m[34mDEBUG [0m| ??:??:?? 275 [RadioIf] [34mLora RX (id=0xbc5fe2cc fr=0x49242450 to=0xffffffff, transport = 0, WantAck=0, HopLim=2 Ch=0x8 encrypted len=33 rxSNR=6.25 rxRSSI=-15 hopStart=3 relay=0xa2)
+07:22:24.367 > [0m[34mDEBUG [0m| ??:??:?? 275 [RadioIf] [34mPacket RX: 477ms
+07:22:24.367 > [0m[34mDEBUG [0m| ??:??:?? 275 [Router] [34mRx someone rebroadcasting for us (id=0xbc5fe2cc fr=0x49242450 to=0xffffffff, transport = 1, WantAck=0, HopLim=2 Ch=0x8 encrypted len=33 rxSNR=6.25 rxRSSI=-15 
+07:22:24.377 > [0m[34mDEBUG [0m| ??:??:?? 275 [Router] [34mDidn't find pending packet
+07:22:24.380 > [0m[32mINFO  [0m| ??:??:?? 275 [Router] [32mPacket History - insert: Reusing slot aged 4.372s TRACE MATCHED PACKET
+07:22:24.381 > [0m[34mDEBUG [0m| ??:??:?? 275 [Router] [34mIgnore dupe incoming msg (id=0xbc5fe2cc fr=0x49242450 to=0xffffffff, transport = 1, WantAck=0, HopLim=2 Ch=0x8 encrypted len=33 rxSNR=6.25 rxRSSI=-15 hopStart
+07:22:24.384 > [0m[34mDEBUG [0m| ??:??:?? 275 [Router] [34mcancelSending id=0xbc5fe2cc, removed=0
+07:22:24.387 > [0m[34mDEBUG [0m| ??:??:?? 275 [Router] [34mIncoming msg was filtered from 0x49242450
+07:22:24.387 > [0m[34mDEBUG [0m| ??:??:?? 305 [Power] [34mBattery: usbPower=0, isCharging=0, batMv=4146, batPct=96
+07:22:54.659 > [0m[34mDEBUG [0m| ??:??:?? 311 [RadioIf] [34mCorrected frequency offset: 6.781250
+07:23:00.145 > [0m[34mDEBUG [0m| ??:??:?? 311 [RadioIf] [34mLora RX (id=0xa287eb63 fr=0x6d4d1ba2 to=0x49242450, transport = 0, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 rxSNR=6 rxRSSI=-15 hopStart=3 nextHop=0x50 rela
+07:23:00.148 > [0m[34mDEBUG [0m| ??:??:?? 311 [RadioIf] [34mPacket RX: 641ms
+07:23:00.149 > [0m[32mINFO  [0m| ??:??:?? 311 [Router] [32mPacket History - insert: Using new slot @uptime 311.124s TRACE NEW
+07:23:00.157 > [0m[34mDEBUG [0m| ??:??:?? 311 [Router] [34mAttempt PKI decryption
+07:23:00.159 > [0m[32mINFO  [0m| ??:??:?? 311 [Router] [32mRandom nonce value: 1171267263
+07:23:00.253 > [0m[34mDEBUG [0m| ??:??:?? 311 [Router] [34mAttempt decrypt with nonce:  63 eb 87 a2 bf 1e d0 45 a2 1b 4d 6d 00
+07:23:00.255 > 
+07:23:00.255 > [0m[34mDEBUG [0m| ??:??:?? 311 [Router] [34mAttempt decrypt with shared_key starting with:  c2 01 58 5c 28 5b e3 58
+07:23:00.259 > 
+07:23:00.259 > [0m[33mWARN  [0m| ??:??:?? 311 [Router] [33mPKC decrypt attempted but failed!
+07:23:00.260 > [0m[33mWARN  [0m| ??:??:?? 311 [Router] [33mNo suitable channel found for decoding, hash was 0x0!
+07:23:00.263 > [0m[34mDEBUG [0m| ??:??:?? 311 [Router] [34mpacket decoding failed or skipped (no PSK?) (id=0xa287eb63 fr=0x6d4d1ba2 to=0x49242450, transport = 1, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 rxSNR=6 rxR
+07:23:00.266 > [0m[34mDEBUG [0m| ??:??:?? 311 [Router] [34mModule 'routing' wantsPacket=1
+07:23:00.268 > [0m[32mINFO  [0m| ??:??:?? 311 [Router] [32mReceived routing from=0x6d4d1ba2, id=0xa287eb63, portnum=37, payloadlen=52681
+07:23:00.270 > [0m[34mDEBUG [0m| ??:??:?? 311 [Router] [34mRouting sniffing (id=0xa287eb63 fr=0x6d4d1ba2 to=0x49242450, transport = 1, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 rxSNR=6 rxRSSI=-15 hopStart=3 nextHop=
+07:23:00.274 > [0m[34mDEBUG [0m| ??:??:?? 311 [Router] [34mPartially randomized packet id 2276152013
+07:23:00.275 > [0m[34mDEBUG [0m| ??:??:?? 311 [Router] [34mlocalSend to channel 0
+07:23:00.276 > [0m[32mINFO  [0m| ??:??:?? 311 [Router] [32mPacket History - insert: Using new slot @uptime 311.244s TRACE NEW
+07:23:00.278 > [0m[34mDEBUG [0m| ??:??:?? 311 [Router] [34mSetting next hop for packet with dest 6d4d1ba2 to 0
+07:23:00.280 > [0m[34mDEBUG [0m| ??:??:?? 311 [Router] [34mExpand short PSK #1
+07:23:00.281 > [0m[34mDEBUG [0m| ??:??:?? 311 [Router] [34mUse AES128 key!
+07:23:00.379 > [0m[34mDEBUG [0m| ??:??:?? 311 [Router] [34menqueue for send (id=0x87ab52cd fr=0x49242450 to=0x6d4d1ba2, transport = 0, WantAck=0, HopLim=0 Ch=0x8 encrypted len=29 relay=0x50 priority=120)
+07:23:00.382 > [0m[34mDEBUG [0m| ??:??:?? 311 [Router] [34mtxGood=13,txRelay=3,rxGood=11,rxBad=0
+07:23:00.384 > [0m[34mDEBUG [0m| ??:??:?? 311 [Router] [34mDelivering rx packet (id=0xa287eb63 fr=0x6d4d1ba2 to=0x49242450, transport = 1, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 rxSNR=6 rxRSSI=-15 hopStart=3 next
+07:23:00.388 > [0m[34mDEBUG [0m| ??:??:?? 311 [Router] [34mForwarding to phone (id=0xa287eb63 fr=0x6d4d1ba2 to=0x49242450, transport = 1, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 rxSNR=6 rxRSSI=-15 hopStart=3 nextH
+07:23:00.391 > [0m[34mDEBUG [0m| ??:??:?? 311 [Router] [34mAttempt PKI decryption
+07:23:00.393 > [0m[32mINFO  [0m| ??:??:?? 311 [Router] [32mRandom nonce value: 1171267263
+07:23:00.394 > [0m[34mDEBUG [0m| ??:??:?? 311 [Router] [34mAttempt decrypt with nonce:  63 eb 87 a2 bf 1e d0 45 a2 1b 4d 6d 00
+07:23:00.489 > 
+07:23:00.489 > [0m[34mDEBUG [0m| ??:??:?? 311 [Router] [34mAttempt decrypt with shared_key starting with:  c2 01 58 5c 28 5b e3 58
+07:23:00.492 > 
+07:23:00.492 > [0m[33mWARN  [0m| ??:??:?? 311 [Router] [33mPKC decrypt attempted but failed!
+07:23:00.494 > [0m[33mWARN  [0m| ??:??:?? 311 [Router] [33mNo suitable channel found for decoding, hash was 0x0!
+07:23:00.496 > [0m[34mDEBUG [0m| ??:??:?? 311 [Router] [34mModule 'routing' considered
+07:23:00.496 > [0m[34mDEBUG [0m| ??:??:?? 311 [RadioIf] [34mStarted Tx (id=0x87ab52cd fr=0x49242450 to=0x6d4d1ba2, transport = 0, WantAck=0, HopLim=0 Ch=0x8 encrypted len=29 relay=0x50 priority=120)
+07:23:00.755 > [0m[34mDEBUG [0m| ??:??:?? 311 [RadioIf] [34m0 packets remain in the TX queue
+07:23:00.756 > [0m[34mDEBUG [0m| ??:??:?? 312 [RadioIf] [34mPacket TX: 477ms
+07:23:01.230 > [0m[34mDEBUG [0m| ??:??:?? 312 [RadioIf] [34mCompleted sending (id=0x87ab52cd fr=0x49242450 to=0x6d4d1ba2, transport = 0, WantAck=0, HopLim=0 Ch=0x8 encrypted len=29 relay=0x50 priority=120)
+07:23:01.233 > [0m[32mINFO  [0m| ??:??:?? 316 [ExperimentModule] [32m dest: 1833769890, globalCounter:6, LEN(noded): 2 
+07:23:05.119 > [0m[34mDEBUG [0m| ??:??:?? 316 [ExperimentModule] [34mPartially randomized packet id 649277134
+07:23:05.121 > [0m[34mDEBUG [0m| ??:??:?? 316 [ExperimentModule] [34mIgnore update from self
+07:23:05.122 > [0m[34mDEBUG [0m| ??:??:?? 316 [ExperimentModule] [34mlocalSend to channel 0
+07:23:05.123 > [0m[32mINFO  [0m| ??:??:?? 316 [ExperimentModule] [32mPacket History - insert: Using new slot @uptime 316.091s TRACE NEW
+07:23:05.125 > [0m[34mDEBUG [0m| ??:??:?? 316 [ExperimentModule] [34mSetting next hop for packet with dest 6d4d1ba2 to 0
+07:23:05.127 > [0m[34mDEBUG [0m| ??:??:?? 316 [ExperimentModule] [34mUse PKI!
+07:23:05.128 > [0m[34mDEBUG [0m| ??:??:?? 316 [ExperimentModule] [34mRandom nonce value: 767826104
+07:23:05.223 > [0m[34mDEBUG [0m| ??:??:?? 316 [ExperimentModule] [34mAttempt encrypt with nonce:  ce 2e b3 26 b8 18 c4 2d 50 24 24 49 00
+07:23:05.225 > 
+07:23:05.225 > [0m[34mDEBUG [0m| ??:??:?? 316 [ExperimentModule] [34mAttempt encrypt with shared_key starting with:  c2 01 58 5c 28 5b e3 58
+07:23:05.229 > 
+07:23:05.229 > [0m[34mDEBUG [0m| ??:??:?? 316 [ExperimentModule] [34menqueue for send (id=0x26b32ece fr=0x49242450 to=0x6d4d1ba2, transport = 0, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 hopStart=3 relay=0x50 priority=100)
+07:23:05.232 > [0m[34mDEBUG [0m| ??:??:?? 316 [ExperimentModule] [34mtxGood=14,txRelay=3,rxGood=11,rxBad=0
+07:23:05.234 > [0m[32mINFO  [0m| ??:??:?? 316 [ExperimentModule] [32mtophone queue status queue is full, discard oldest
+07:23:05.236 > [0m[32mINFO  [0m| ??:??:?? 316 [ExperimentModule] [32mSent test packet 3 to 1833769890
+07:23:05.237 > [0m[32mINFO  [0m| ??:??:?? 316 [ExperimentModule] [32mnb global packets: 7
+07:23:05.238 > [0m[34mDEBUG [0m| ??:??:?? 316 [RadioIf] [34mStarted Tx (id=0x26b32ece fr=0x49242450 to=0x6d4d1ba2, transport = 0, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 hopStart=3 relay=0x50 priority=100)
+07:23:05.392 > [0m[34mDEBUG [0m| ??:??:?? 316 [RadioIf] [34m0 packets remain in the TX queue
+07:23:05.394 > [0m[34mDEBUG [0m| ??:??:?? 317 [RadioIf] [34mPacket TX: 641ms
+07:23:06.031 > [0m[34mDEBUG [0m| ??:??:?? 317 [RadioIf] [34mCompleted sending (id=0x26b32ece fr=0x49242450 to=0x6d4d1ba2, transport = 0, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 hopStart=3 relay=0x50 priority=100)
+07:23:06.035 > [0m[34mDEBUG [0m| ??:??:?? 355 [RadioIf] [34mCorrected frequency offset: 6.781250
+07:23:44.951 > [0m[34mDEBUG [0m| ??:??:?? 355 [RadioIf] [34mLora RX (id=0x09ab3f64 fr=0x6d4d1ba2 to=0xffffffff, transport = 0, WantAck=0, HopLim=3 Ch=0x8 encrypted len=33 rxSNR=6.25 rxRSSI=-15 hopStart=3 relay=0xa2)
+07:23:44.955 > [0m[34mDEBUG [0m| ??:??:?? 355 [RadioIf] [34mPacket RX: 477ms
+07:23:44.955 > [0m[32mINFO  [0m| ??:??:?? 355 [Router] [32mPacket History - insert: Using new slot @uptime 355.931s TRACE NEW
+07:23:44.963 > [0m[34mDEBUG [0m| ??:??:?? 355 [Router] [34mUse channel 0 (hash 0x8)
+07:23:44.965 > [0m[34mDEBUG [0m| ??:??:?? 355 [Router] [34mExpand short PSK #1
+07:23:44.966 > [0m[34mDEBUG [0m| ??:??:?? 355 [Router] [34mUse AES128 key!
+07:23:45.064 > [0m[34mDEBUG [0m| ??:??:?? 356 [Router] [34mdecoded message (id=0x09ab3f64 fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=3 Ch=0x0 Portnum=1 rxSNR=6.25 rxRSSI=-15 hopStart=3 relay=0xa2)
+07:23:45.068 > [0m[34mDEBUG [0m| ??:??:?? 356 [Router] [34mhandleReceived(REMOTE) (id=0x09ab3f64 fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=3 Ch=0x0 Portnum=1 rxSNR=6.25 rxRSSI=-15 hopStart=3 relay=
+07:23:45.071 > [0m[34mDEBUG [0m| ??:??:?? 356 [Router] [34mModule 'ExperimentModule' wantsPacket=1
+07:23:45.073 > [0m[32mINFO  [0m| ??:??:?? 356 [Router] [32mReceived test packet from 1833769890
+07:23:45.075 > [0m[34mDEBUG [0m| ??:??:?? 356 [Router] [34mModule 'ExperimentModule' considered
+07:23:45.076 > [0m[34mDEBUG [0m| ??:??:?? 356 [Router] [34mModule 'text' wantsPacket=1
+07:23:45.077 > [0m[32mINFO  [0m| ??:??:?? 356 [Router] [32mReceived text msg from=0x6d4d1ba2, id=0x9ab3f64, msg=test: 9: -1
+07:23:45.080 > [0m[34mDEBUG [0m| ??:??:?? 356 [Router] [34mState: ON
+07:23:45.081 > [0m[34mDEBUG [0m| ??:??:?? 356 [Router] [34mModule 'text' considered
+07:23:45.082 > [0m[34mDEBUG [0m| ??:??:?? 356 [Router] [34mModule 'ExternalNotificationModule' wantsPacket=1
+07:23:45.083 > [0m[32mINFO  [0m| ??:??:?? 356 [Router] [32mExternal Notification Module Disabled or muted
+07:23:45.084 > [0m[34mDEBUG [0m| ??:??:?? 356 [Router] [34mModule 'ExternalNotificationModule' considered
+07:23:45.087 > [0m[34mDEBUG [0m| ??:??:?? 356 [Router] [34mModule 'routing' wantsPacket=1
+07:23:45.088 > [0m[32mINFO  [0m| ??:??:?? 356 [Router] [32mReceived routing from=0x6d4d1ba2, id=0x9ab3f64, portnum=1, payloadlen=11
+07:23:45.090 > [0m[34mDEBUG [0m| ??:??:?? 356 [Router] [34mRouting sniffing (id=0x09ab3f64 fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=3 Ch=0x0 Portnum=1 rxSNR=6.25 rxRSSI=-15 hopStart=3 relay=0xa2)
+07:23:45.094 > [0m[32mINFO  [0m| ??:??:?? 356 [Router] [32mRebroadcast received message coming from a2
+07:23:45.095 > [0m[32mINFO  [0m| ??:??:?? 356 [Router] [32mPacket History - insert: Reusing slot aged 0.133s TRACE MATCHED PACKET
+07:23:45.097 > [0m[34mDEBUG [0m| ??:??:?? 356 [Router] [34mExpand short PSK #1
+07:23:45.099 > [0m[34mDEBUG [0m| ??:??:?? 356 [Router] [34mUse AES128 key!
+07:23:45.197 > [0m[34mDEBUG [0m| ??:??:?? 356 [Router] [34menqueue for send (id=0x09ab3f64 fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=2 Ch=0x8 encrypted len=33 rxSNR=6.25 rxRSSI=-15 hopStart=3 relay
+07:23:45.200 > [0m[34mDEBUG [0m| ??:??:?? 356 [Router] [34mtxGood=15,txRelay=3,rxGood=12,rxBad=0
+07:23:45.201 > [0m[34mDEBUG [0m| ??:??:?? 356 [Router] [34mrx_snr found. hop_limit:2 rx_snr:6.250000
+07:23:45.203 > [0m[34mDEBUG [0m| ??:??:?? 356 [Router] [34mrx_snr found in packet. Setting tx delay:3836
+07:23:45.205 > [0m[34mDEBUG [0m| ??:??:?? 356 [Router] [34mDelivering rx packet (id=0x09ab3f64 fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=3 Ch=0x0 Portnum=1 rxSNR=6.25 rxRSSI=-15 hopStart=3 relay=0x
+07:23:45.209 > [0m[34mDEBUG [0m| ??:??:?? 356 [Router] [34mUpdate DB node 0x6d4d1ba2, rx_time=0
+07:23:45.210 > [0m[32mINFO  [0m| ??:??:?? 356 [Router] [32mSort took 0 milliseconds
+07:23:45.212 > [0m[34mDEBUG [0m| ??:??:?? 356 [Router] [34mForwarding to phone (id=0x09ab3f64 fr=0x6d4d1ba2 to=0xffffffff, transport = 1, WantAck=0, HopLim=3 Ch=0x0 Portnum=1 rxSNR=6.25 rxRSSI=-15 hopStart=3 relay=0xa
+07:23:45.215 > [0m[34mDEBUG [0m| ??:??:?? 356 [Router] [34mModule 'routing' considered
+07:23:45.216 > [0m

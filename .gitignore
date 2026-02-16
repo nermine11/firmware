@@ -33,6 +33,8 @@ __pycache__
 *~
 
 venv/
+logs/
+nanopb-0.4.9/
 release/
 .vscode/extensions.json
 /compile_commands.json

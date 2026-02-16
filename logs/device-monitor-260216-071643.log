@@ -1,0 +1,81 @@
+07:16:43.580 > [34mDEBUG [0m| ??:??:?? 5 [34m   nodes.proto (394 Bytes)
+07:16:43.580 > [0m[34mDEBUG [0m| ??:??:?? 5 [34m adafruit (directory)
+07:16:43.583 > [0m[34mDEBUG [0m| ??:??:?? 5 [34m bond_prph (directory)
+07:16:43.586 > [0m[34mDEBUG [0m| ??:??:?? 5 [34m bond_cntr (directory)
+07:16:43.587 > [0m[34mDEBUG [0m| ??:??:?? 5 [34mPower::lipoInit lipo sensor is not ready yet
+07:16:43.589 > [0m[34mDEBUG [0m| ??:??:?? 5 [34mUse analog input 32 for battery level
+07:16:43.590 > [0m[32mINFO  [0m| ??:??:?? 5 [32mScan for i2c devices
+07:16:43.591 > [0m[34mDEBUG [0m| ??:??:?? 5 [34mScan for I2C devices on port 1
+07:16:43.608 > [0m[32mINFO  [0m| ??:??:?? 5 [32mNo I2C devices found
+07:16:43.609 > [0m[34mDEBUG [0m| ??:??:?? 5 [34macc_info = 0
+07:16:43.610 > [0m[32mINFO  [0m| ??:??:?? 5 [32mS:B:88,2.7.15.b2f4e2082,seeed_xiao_nrf52840_kit,git@github.com:nermine11/firmware
+07:16:43.612 > [0m[32mINFO  [0m| ??:??:?? 5 [32mBuild timestamp: 1771196400
+07:16:43.613 > [0m[34mDEBUG [0m| ??:??:?? 5 [34mReset reason: 0x0
+07:16:43.711 > [0m[34mDEBUG [0m| ??:??:?? 5 [34mSet random seed 2454836229
+07:16:43.711 > [0m[32mINFO  [0m| ??:??:?? 5 [32mInit NodeDB
+07:16:43.715 > [0m[32mINFO  [0m| ??:??:?? 5 [32mLoad /prefs/nodes.proto
+07:16:43.722 > [0m[32mINFO  [0m| ??:??:?? 5 [32mLoaded /prefs/nodes.proto successfully
+07:16:43.723 > [0m[32mINFO  [0m| ??:??:?? 5 [32mLoaded saved nodedatabase version 24, with nodes count: 3
+07:16:43.729 > [0m[32mINFO  [0m| ??:??:?? 5 [32mLoad /prefs/device.proto
+07:16:43.731 > [0m[32mINFO  [0m| ??:??:?? 5 [32mLoaded /prefs/device.proto successfully
+07:16:43.732 > [0m[32mINFO  [0m| ??:??:?? 5 [32mLoaded saved devicestate version 24
+07:16:43.735 > [0m[32mINFO  [0m| ??:??:?? 5 [32mLoad /prefs/config.proto
+07:16:43.738 > [0m[32mINFO  [0m| ??:??:?? 5 [32mLoaded /prefs/config.proto successfully
+07:16:43.739 > [0m[32mINFO  [0m| ??:??:?? 5 [32mLoaded saved config version 24
+07:16:43.742 > [0m[32mINFO  [0m| ??:??:?? 5 [32mLoad /prefs/module.proto
+07:16:43.745 > [0m[32mINFO  [0m| ??:??:?? 5 [32mLoaded /prefs/module.proto successfully
+07:16:43.746 > [0m[32mINFO  [0m| ??:??:?? 5 [32mLoaded saved moduleConfig version 24
+07:16:43.749 > [0m[32mINFO  [0m| ??:??:?? 5 [32mLoad /prefs/channels.proto
+07:16:43.752 > [0m[32mINFO  [0m| ??:??:?? 5 [32mLoaded /prefs/channels.proto successfully
+07:16:43.753 > [0m[32mINFO  [0m| ??:??:?? 5 [32mLoaded saved channelFile version 24
+07:16:43.755 > [0m[31mERROR [0m| ??:??:?? 5 [31mCould not open / read /prefs/uiconfig.proto
+07:16:43.756 > [0m[34mDEBUG [0m| ??:??:?? 5 [34mcleanupMeshDB purged 0 entries
+07:16:43.762 > [0m[34mDEBUG [0m| ??:??:?? 5 [34mUse nodenum 0x49242450 
+07:16:43.857 > [0m[34mDEBUG [0m| ??:??:?? 5 [34mExpand short PSK #1
+07:16:43.858 > [0m[32mINFO  [0m| ??:??:?? 5 [32mWanted region 3, using EU_868
+07:16:43.859 > [0m[34mDEBUG [0m| ??:??:?? 5 [34mCoerce telemetry to min of 30 minutes on defaults
+07:16:43.860 > [0m[32mINFO  [0m| ??:??:?? 5 [32mSort took 0 milliseconds
+07:16:43.866 > [0m[34mDEBUG [0m| ??:??:?? 5 [34mSave to disk 0
+07:16:43.871 > [0m[33mWARN  [0m| ??:??:?? 5 [33mPacket History - Invalid size -1, using default 160
+07:16:43.872 > [0m[34mDEBUG [0m| ??:??:?? 5 [34mUse compiled/slipstreamed tzplaceholder                                         
+07:16:43.875 > [0m[34mDEBUG [0m| ??:??:?? 5 [34mSet Timezone to GMT0
+07:16:43.879 > [0m[31mERROR [0m| ??:??:?? 5 [31mCould not open / read /prefs/cannedConf.proto
+07:16:43.880 > [0m[32mINFO  [0m| ??:??:?? 5 [32mCannedMessageModule is enabled
+07:16:43.882 > [0m[32mINFO  [0m| ??:??:?? 5 [32mExternal Notification Module Disabled
+07:16:43.883 > [0m[34mDEBUG [0m| ??:??:?? 5 [34mSX126xInterface(cs=4, irq=1, rst=2, busy=3)
+07:16:43.886 > [0m[34mDEBUG [0m| ??:??:?? 5 [34mSX126X_DIO3_TCXO_VOLTAGE defined, using DIO3 as TCXO reference voltage at 1.800000 V
+07:16:43.887 > [0m[32mINFO  [0m| ??:??:?? 5 [32mStart meshradio init
+07:16:43.888 > [0m[32mINFO  [0m| ??:??:?? 5 [32mRadio freq=869.525, config.lora.frequency_offset=0.000
+07:16:43.890 > [0m[32mINFO  [0m| ??:??:?? 5 [32mSet radio: region=EU_868, name=LongFast, config=0, ch=0, power=27
+07:16:43.891 > [0m[32mINFO  [0m| ??:??:?? 5 [32mmyRegion->freqStart -> myRegion->freqEnd: 869.400024 -> 869.650024 (0.250000 MHz)
+07:16:43.894 > [0m[32mINFO  [0m| ??:??:?? 5 [32mnumChannels: 1 x 250.000kHz
+07:16:43.895 > [0m[32mINFO  [0m| ??:??:?? 5 [32mchannel_num: 1
+07:16:43.895 > [0m[32mINFO  [0m| ??:??:?? 5 [32mfrequency: 869.525024
+07:16:43.896 > [0m[32mINFO  [0m| ??:??:?? 5 [32mSlot time: 28 msec, preamble time: 131 msec
+07:16:43.899 > [0m[32mINFO  [0m| ??:??:?? 5 [32mFinal Tx power: 22 dBm
+07:16:43.899 > [0m[32mINFO  [0m| ??:??:?? 5 [32mSX126x init result 0
+07:16:43.935 > [0m[32mINFO  [0m| ??:??:?? 5 [32mFrequency set to 869.525024
+07:16:43.936 > [0m[32mINFO  [0m| ??:??:?? 5 [32mBandwidth set to 250.000000
+07:16:43.938 > [0m[32mINFO  [0m| ??:??:?? 5 [32mPower output set to 22
+07:16:43.939 > [0m[34mDEBUG [0m| ??:??:?? 5 [34mCurrent limit set to 140.000000
+07:16:43.940 > [0m[34mDEBUG [0m| ??:??:?? 5 [34mCurrent limit set result 0
+07:16:43.941 > [0m[34mDEBUG [0m| ??:??:?? 5 [34mSet DIO2 as RF switch, result: 0
+07:16:43.942 > [0m[34mDEBUG [0m| ??:??:?? 5 [34mUse MCU pin 5 as RXEN and pin -1 as TXEN to control RF switching
+07:16:43.945 > [0m[32mINFO  [0m| ??:??:?? 5 [32mSet RX gain to boosted mode; result: 0
+07:16:43.946 > [0m[32mINFO  [0m| ??:??:?? 5 [32mSX1262 init success
+07:16:43.953 > [0m[34mDEBUG [0m| ??:??:?? 5 [34mLoRA bitrate = 116.967873 bytes / sec
+07:16:43.954 > [0m[32mINFO  [0m| ??:??:?? 5 [32mPowerFSM init, USB power=1
+07:16:43.958 > [0m[34mDEBUG [0m| ??:??:?? 5 [34mState: BOOT
+07:16:43.959 > [0m[34mDEBUG [0m| ??:??:?? 5 [34mNode status update: 3 online, 3 total
+07:16:43.960 > [0m[32mINFO  [0m| ??:??:?? 8 [PowerFSM] [32mLoss of power in Powered
+07:16:46.970 > [0m[32mINFO  [0m| ??:??:?? 8 [PowerFSM] [32mLoss of power in Powered
+07:16:47.073 > [0m[34mDEBUG [0m| ??:??:?? 8 [PowerFSM] [34mInit NRF52 Bluetooth
+07:16:47.074 > [0m[32mINFO  [0m| ??:??:?? 8 [PowerFSM] [32mInit the Bluefruit nRF52 module
+07:16:47.193 > [0m[32mINFO  [0m| ??:??:?? 8 [PowerFSM] [32mBluetooth pin set to '123456'
+07:16:47.195 > [0m[32mINFO  [0m| ??:??:?? 8 [PowerFSM] [32mInit the Device Information Service
+07:16:47.197 > [0m[32mINFO  [0m| ??:??:?? 8 [PowerFSM] [32mInit the Battery Service
+07:16:47.198 > [0m[32mINFO  [0m| ??:??:?? 8 [PowerFSM] [32mInit the Mesh bluetooth service
+07:16:47.200 > [0m[32mINFO  [0m| ??:??:?? 8 [PowerFSM] [32mSet up the advertising payload(s)
+07:16:47.203 > [0m[32mINFO  [0m| ??:??:?? 8 [PowerFSM] [32mAdvertise
+07:16:47.203 > [0m[34mDEBUG [0m| ??:??:?? 8 [PowerFSM] [34mState: ON
+07:16:47.204 > [0m

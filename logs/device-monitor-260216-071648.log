@@ -1,0 +1,41 @@
+07:16:59.302 > [34mDEBUG [0m| ??:??:?? 20 [RadioIf] [34mCorrected frequency offset: 12.593750
+07:16:59.304 > [0m[34mDEBUG [0m| ??:??:?? 20 [RadioIf] [34mLora RX (id=0x08e6135b fr=0x6d4d1ba2 to=0x49242450, transport = 0, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 rxSNR=6 rxRSSI=-3 hopStart=3 nextHop=0x50 relay
+07:16:59.307 > [0m[34mDEBUG [0m| ??:??:?? 20 [RadioIf] [34mPacket RX: 641ms
+07:16:59.307 > [0m[32mINFO  [0m| ??:??:?? 20 [Router] [32mPacket History - insert: Using new slot @uptime 20.831s TRACE NEW
+07:16:59.316 > [0m[34mDEBUG [0m| ??:??:?? 20 [Router] [34mAttempt PKI decryption
+07:16:59.317 > [0m[32mINFO  [0m| ??:??:?? 20 [Router] [32mRandom nonce value: 67516444
+07:16:59.413 > [0m[34mDEBUG [0m| ??:??:?? 20 [Router] [34mAttempt decrypt with nonce:  5b 13 e6 08 1c 38 06 04 a2 1b 4d 6d 00
+07:16:59.415 > 
+07:16:59.415 > [0m[34mDEBUG [0m| ??:??:?? 20 [Router] [34mAttempt decrypt with shared_key starting with:  c2 01 58 5c 28 5b e3 58
+07:16:59.418 > 
+07:16:59.418 > [0m[33mWARN  [0m| ??:??:?? 20 [Router] [33mPKC decrypt attempted but failed!
+07:16:59.420 > [0m[33mWARN  [0m| ??:??:?? 20 [Router] [33mNo suitable channel found for decoding, hash was 0x0!
+07:16:59.421 > [0m[34mDEBUG [0m| ??:??:?? 20 [Router] [34mpacket decoding failed or skipped (no PSK?) (id=0x08e6135b fr=0x6d4d1ba2 to=0x49242450, transport = 1, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 rxSNR=6 rxR
+07:16:59.424 > [0m[34mDEBUG [0m| ??:??:?? 20 [Router] [34mModule 'routing' wantsPacket=1
+07:16:59.427 > [0m[32mINFO  [0m| ??:??:?? 20 [Router] [32mReceived routing from=0x6d4d1ba2, id=0x8e6135b, portnum=37, payloadlen=48619
+07:16:59.428 > [0m[34mDEBUG [0m| ??:??:?? 20 [Router] [34mRouting sniffing (id=0x08e6135b fr=0x6d4d1ba2 to=0x49242450, transport = 1, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 rxSNR=6 rxRSSI=-3 hopStart=3 nextHop=0
+07:16:59.432 > [0m[34mDEBUG [0m| ??:??:?? 20 [Router] [34mInitial packet id 802276899
+07:16:59.434 > [0m[34mDEBUG [0m| ??:??:?? 20 [Router] [34mPartially randomized packet id 4062256676
+07:16:59.435 > [0m[34mDEBUG [0m| ??:??:?? 20 [Router] [34mlocalSend to channel 0
+07:16:59.437 > [0m[32mINFO  [0m| ??:??:?? 20 [Router] [32mPacket History - insert: Using new slot @uptime 20.953s TRACE NEW
+07:16:59.439 > [0m[34mDEBUG [0m| ??:??:?? 20 [Router] [34mSetting next hop for packet with dest 6d4d1ba2 to 0
+07:16:59.440 > [0m[34mDEBUG [0m| ??:??:?? 20 [Router] [34mExpand short PSK #1
+07:16:59.442 > [0m[34mDEBUG [0m| ??:??:?? 20 [Router] [34mUse AES128 key!
+07:16:59.443 > [0m[34mDEBUG [0m| ??:??:?? 20 [Router] [34menqueue for send (id=0xf2211e24 fr=0x49242450 to=0x6d4d1ba2, transport = 0, WantAck=0, HopLim=0 Ch=0x8 encrypted len=29 relay=0x50 priority=120)
+07:16:59.447 > [0m[34mDEBUG [0m| ??:??:?? 20 [Router] [34mtxGood=0,txRelay=0,rxGood=1,rxBad=0
+07:16:59.448 > [0m[34mDEBUG [0m| ??:??:?? 20 [Router] [34mDelivering rx packet (id=0x08e6135b fr=0x6d4d1ba2 to=0x49242450, transport = 1, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 rxSNR=6 rxRSSI=-3 hopStart=3 nextH
+07:16:59.452 > [0m[34mDEBUG [0m| ??:??:?? 20 [Router] [34mForwarding to phone (id=0x08e6135b fr=0x6d4d1ba2 to=0x49242450, transport = 1, WantAck=0, HopLim=3 Ch=0x0 encrypted len=53 rxSNR=6 rxRSSI=-3 hopStart=3 nextHo
+07:16:59.455 > [0m[34mDEBUG [0m| ??:??:?? 20 [Router] [34mAttempt PKI decryption
+07:16:59.456 > [0m[32mINFO  [0m| ??:??:?? 20 [Router] [32mRandom nonce value: 67516444
+07:16:59.552 > [0m[34mDEBUG [0m| ??:??:?? 21 [Router] [34mAttempt decrypt with nonce:  5b 13 e6 08 1c 38 06 04 a2 1b 4d 6d 00
+07:16:59.555 > 
+07:16:59.555 > [0m[34mDEBUG [0m| ??:??:?? 21 [Router] [34mAttempt decrypt with shared_key starting with:  c2 01 58 5c 28 5b e3 58
+07:16:59.558 > 
+07:16:59.558 > [0m[33mWARN  [0m| ??:??:?? 21 [Router] [33mPKC decrypt attempted but failed!
+07:16:59.560 > [0m[33mWARN  [0m| ??:??:?? 21 [Router] [33mNo suitable channel found for decoding, hash was 0x0!
+07:16:59.561 > [0m[34mDEBUG [0m| ??:??:?? 21 [Router] [34mModule 'routing' considered
+07:16:59.562 > [0m[34mDEBUG [0m| ??:??:?? 21 [RadioIf] [34mStarted Tx (id=0xf2211e24 fr=0x49242450 to=0x6d4d1ba2, transport = 0, WantAck=0, HopLim=0 Ch=0x8 encrypted len=29 relay=0x50 priority=120)
+07:16:59.662 > [0m[34mDEBUG [0m| ??:??:?? 21 [RadioIf] [34m0 packets remain in the TX queue
+07:16:59.663 > [0m[34mDEBUG [0m| ??:??:?? 21 [RadioIf] [34mPacket TX: 477ms
+07:17:00.137 > [0m[34mDEBUG [0m| ??:??:?? 21 [RadioIf] [34mCompleted sending (id=0xf2211e24 fr=0x49242450 to=0x6d4d1ba2, transport = 0, WantAck=0, HopLim=0 Ch=0x8 encrypted len=29 relay=0x50 priority=120)
+07:17:00.140 > [0m
