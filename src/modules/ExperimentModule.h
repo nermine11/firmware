@@ -4,10 +4,9 @@
 #include "pb_encode.h"
 #include "mesh/generated/meshtastic/experiment.pb.h"
 #include <map>
-#include <set>
 using namespace std;
 #define LEN(a) (sizeof(a) / sizeof(*a))
-
+#define NB_NODES 10
 /**
  * A simple example module that just replies with "Message received" to any message it receives.
  */
@@ -28,22 +27,26 @@ class ExperimentModule : public SinglePortModule,  private concurrency::OSThread
     // number of our nodes
     //NodeNum nodes[11] = {1391039350, 1227105360, 3214103652, 1833769890, 
     //2458335390, 871882989, 2446794159, 2057312131, 1507035365, 834716913, NODENUM_BROADCAST};
-    NodeNum nodes[2] = {1833769890, NODENUM_BROADCAST};
+    NodeNum nodes[1] = {NODENUM_BROADCAST};
     //NodeNum nodes[2] = {1227105360,NODENUM_BROADCAST };
-    /*
-    map to keep track of how many unique packets are sent to each node
-    We do not count retransmissions, only unique packets
-    <NodeNum,  <unique packets received that NodeNum, when they were sent>*/ 
-    std::map<NodeNum, std::map<uint32_t, uint32_t>> sentPackets;
-    /*
-    map to keep track of how many unique packets are received from each node
-    We do not count duplicate packets, or what we received as relays
-    We only count the packets sent to us as DM or rebroadcasts
-    <NodeNum,  <unique packets received that NodeNum, when they were received>*/ 
-    std::map<NodeNum, std::map<uint32_t, uint32_t>> receivedPackets;
     // Total number of packets sent by our node 
     uint32_t globalCounter = 0;
 
+    struct Packet {
+      NodeNum node; // source or destination
+      uint32_t packetId;
+      char text[64];
+      uint32_t timestamp;
+    };
+    struct Node {
+      Packet sentPackets[100];
+      uint32_t sentCount = 0;
+      uint32_t receievedCount = 0;
+      Packet receivedPackets[100];
+      uint32_t sentToCollector = 0;
+      uint32_t receivedToCollector = 0;
+    };
+    std::map<NodeNum, Node> nodesMap;
   protected:
     unsigned int my_interval = 45000; // interval in millisconds
     uint32_t lastStatsSent = 0;       // last time stats were sent to collector node
@@ -57,10 +60,9 @@ class ExperimentModule : public SinglePortModule,  private concurrency::OSThread
     /**
      * Called when we receive a packet, We save the packet in receivedPackets map
      */
-    ProcessMessage handleReceived(const meshtastic_MeshPacket &mp) override;
-    uint32_t ExperimentModule::sendToCollector();
-  private:
-    static void ExperimentModule ::deleteElements(int numElementsToRemove, std::map<NodeNum, std::map<uint32_t, uint32_t>> packets);
+    //ProcessMessage handleReceived(const meshtastic_MeshPacket &mp) override;
+    uint32_t sendToCollector();
+    void saveSentPacket(uint32_t id, NodeNum dest, uint32_t timestamp, char text[64]);
 };
 
 extern ExperimentModule *experimentModule;

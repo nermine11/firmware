@@ -9,10 +9,10 @@
 PB_BIND(PacketEntry, PacketEntry, AUTO)
 
 
-PB_BIND(NodeStats, NodeStats, 2)
+PB_BIND(NodeStats, NodeStats, AUTO)
 
 
-PB_BIND(ExperimentStats, ExperimentStats, 4)
+PB_BIND(ExperimentStats, ExperimentStats, 2)
 
 
 

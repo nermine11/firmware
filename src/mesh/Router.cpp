@@ -267,7 +267,6 @@ ErrorCode Router::sendLocal(meshtastic_MeshPacket *p, RxSource src)
                 LOG_DEBUG("localSend to channel %d", p->channel);
             }
         }
-
         return send(p);
     }
 }
@@ -342,7 +341,6 @@ ErrorCode Router::send(meshtastic_MeshPacket *p)
           p->which_payload_variant == meshtastic_MeshPacket_decoded_tag)) {
         return meshtastic_Routing_Error_BAD_REQUEST;
     }
-
     fixPriority(p); // Before encryption, fix the priority if it's unset
 
     // If the packet is not yet encrypted, do so now
@@ -667,7 +665,6 @@ meshtastic_Routing_Error perhapsEncode(meshtastic_MeshPacket *p)
         p->encrypted.size = numbytes;
         p->which_payload_variant = meshtastic_MeshPacket_encrypted_tag;
     }
-
     return meshtastic_Routing_Error_NONE;
 }
 

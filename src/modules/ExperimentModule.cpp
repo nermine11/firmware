@@ -7,16 +7,18 @@
 
 ExperimentModule *experimentModule;
 
-// make it static
-void ExperimentModule :: deleteElements(int  numElementsToRemove, std::map<NodeNum, std::map<uint32_t, uint32_t>> packetsMap){
-    size_t originalSize = packetsMap.size();
-    if (originalSize <= numElementsToRemove) {
-        auto eraseIter = packetsMap.begin();
-        std::advance(eraseIter, numElementsToRemove);
-        packetsMap.erase(packetsMap.begin(), eraseIter);
-    } else {
-        packetsMap.clear();
-    }
+void ExperimentModule::saveSentPacket(uint32_t packetId, NodeNum dest, uint32_t timestamp,char text[64]){
+    Node &destNode = nodesMap[dest];
+    // create packet to save
+    Packet &p = destNode.sentPackets[destNode.sentCount];
+    p.node = dest;
+    p.packetId = packetId;
+    p.timestamp = timestamp;
+    snprintf(p.text,
+            sizeof(p.text),
+            "%s",
+            text);
+   destNode.sentCount++;
 }
 
 uint32_t ExperimentModule::sendPacket(int i, NodeNum dest)
@@ -38,13 +40,15 @@ uint32_t ExperimentModule::sendPacket(int i, NodeNum dest)
         p->decoded.payload.size = len;
         // send the packet
         service->sendToMesh(p);
+        saveSentPacket(p->id, p->to, millis(), msg);
         return p->id;
     }
     return 0;
 }
 
-ProcessMessage ExperimentModule::handleReceived(const meshtastic_MeshPacket &mp)
+/*ProcessMessage ExperimentModule::handleReceived(const meshtastic_MeshPacket &mp)
 {
+    LOG_INFO("ExperimentModule handleReceived called");
     // if packet is broadcast or is to us, increment the counter
     if ((isBroadcast(mp.to) || isToUs(&mp))) {
         auto& senderMap = receivedPackets[mp.from];
@@ -56,74 +60,82 @@ ProcessMessage ExperimentModule::handleReceived(const meshtastic_MeshPacket &mp)
         }
     }
     return ProcessMessage::CONTINUE; // Let others look at this message also if they want
-}
+}*/
 
 //recheck and test this
-uint32_t ExperimentModule::sendToCollector()
+/*uint32_t ExperimentModule::sendToCollector()
 {
     meshtastic_MeshPacket *p = router->allocForSending();
     if (p){
-        p->to = 1391039350; // collector node
-        p->decoded.portnum = meshtastic_PortNum_TEXT_MESSAGE_APP;
+        p->to = 834716913; // collector node
+        p->decoded.portnum =  meshtastic_PortNum_TEXT_MESSAGE_APP;
         p->want_ack = false;
         // Create protobuf struct
         ExperimentStats stats = ExperimentStats_init_zero;
         stats.sender_node = nodeDB->getNodeNum();
         // Sent packets
         stats.sent_count = 0; //intialize to 0
-        for (auto &destPair : sentPackets){
-            if(stats.sent_count == 10){
+
+        for (auto &elt : sentPackets){
+            if(stats.sent_count == 3){
                 break;
             }
             NodeStats *nodeStats = &stats.sent[stats.sent_count];
             stats.sent_count ++;
-            nodeStats->node_id = destPair.first;
+            nodeStats->node_id = elt.first;
             nodeStats->packets_count = 0;
-            for (auto &packetPair : destPair.second)
+            for (auto &packet : elt.second)
             {
-                PacketEntry *entry = &nodeStats->packets[nodeStats->packets_count];
+                if(nodeStats->packets_count == 4){
+                    break;
+                }
+                PacketEntry *packetEntry = &nodeStats->packets[nodeStats->packets_count];
                 nodeStats->packets_count++;
-                entry->packet_id = packetPair.first;
-                entry->timestamp = packetPair.second;
+                packetEntry->packet_id = packet.first;
+                packetEntry->timestamp = packet.second;
             }
         }
-        // Recieved packets
+       // Recieved packets
         stats.received_count = 0;
-        for (auto &srcPair : receivedPackets)
+        for (auto &elt : receivedPackets)
         {
-            if(stats.received_count == 10){
+            if(stats.received_count == 3){
                 break;
             }
             NodeStats *nodeStats = &stats.received[stats.received_count];
             stats.received_count++;
-            nodeStats->node_id = srcPair.first;
+            nodeStats->node_id = elt.first;
             nodeStats->packets_count = 0;
-            for (auto &packetPair : srcPair.second)
+            for (auto &packet : elt.second)
             {
-                PacketEntry *entry = &nodeStats->packets[nodeStats->packets_count];
+                if(nodeStats->packets_count == 4){
+                    break;
+                }
+                PacketEntry *packetEntry = &nodeStats->packets[nodeStats->packets_count];
                 nodeStats->packets_count++;
-                entry->packet_id = packetPair.first;
-                entry->timestamp = packetPair.second;
+                packetEntry->packet_id = packet.first;
+                packetEntry->timestamp = packet.second;
             }
         }
         // Encode into payload
-        pb_ostream_t stream = pb_ostream_from_buffer(
+        size_t bytes = pb_encode_to_bytes(
             p->decoded.payload.bytes,
-            sizeof(p->decoded.payload.bytes)
+            sizeof(p->decoded.payload.bytes),
+            ExperimentStats_fields,
+            &stats
         );
-        bool success = pb_encode(&stream, ExperimentStats_fields, &stats);
-        if (!success){
+        if (bytes == 0) {
             LOG_ERROR("Protobuf encode failed");
             return 0;
         }
-        deleteElements(stats.sent_count, sentPackets);
-        deleteElements(stats.received_count, receivedPackets);
-        p->decoded.payload.size = stream.bytes_written;
+        p->decoded.payload.size = bytes;
+        LOG_INFO("Encoded size: %u bytes", bytes);
         service->sendToMesh(p);
+        LOG_INFO("Sent to mesh");
         return p->id;
     } 
     return 0;
-}
+}*/
 
 /**
  * send periodically a packet to a destination
@@ -133,21 +145,79 @@ int32_t ExperimentModule::runOnce()
 {
     NodeNum dest = nodes[globalCounter % LEN(nodes)];
     LOG_INFO(" dest: %u, globalCounter:%u, LEN(nodes): %u ", dest, globalCounter, LEN(nodes));
-    uint32_t i = sentPackets[dest].size();
+    uint32_t i = nodesMap[dest].sentCount;
     uint32_t id = sendPacket(i, dest);
     if(id){
         LOG_INFO("Sent test packet %u to %u", i, dest);
-        sentPackets[dest][id] = millis();
         globalCounter ++;
         LOG_INFO("nb global packets: %u", globalCounter);
     }
-    // send data to collector every 5 mins
+    // send data to collector every 2 mins
     uint32_t now  = millis();
-    // if it has been 5 mins since we last sent, send again
-    if(now - lastStatsSent > 300000 ){
+    // if it has been 2 mins since we last sent and one of the maps is not empty, send again
+    if(now - lastStatsSent > 60000 ){//&& !(sentPackets.empty() && receivedPackets.empty())){
         sendToCollector();
+        LOG_INFO("Sent to collector");
         lastStatsSent = now;
     }
     // run again after my_interval ms
     return(my_interval);
+}
+
+
+uint32_t ExperimentModule::sendToCollector()
+{
+    meshtastic_MeshPacket *p = router->allocForSending();
+    if (p){
+        p->to = 2458335390; // collector node
+        p->decoded.portnum =  meshtastic_PortNum_PRIVATE_APP;
+        p->want_ack = false;
+        // Create protobuf struct
+        static ExperimentStats stats; 
+        stats = ExperimentStats_init_zero;  
+        stats.sender_node = nodeDB->getNodeNum();
+        // Sent packets
+        stats.sent_count = 0; //intialize to 0
+        for (auto &pair : nodesMap) {
+            Node &destNode = pair.second;
+            NodeStats *nodeStats = &stats.sent[stats.sent_count];
+            nodeStats->packets_count = 0;
+            stats.sent_count ++;
+            for (uint32_t j = 0; j < destNode.sentCount; j++){
+                Packet &packet = destNode.sentPackets[j];
+                nodeStats->node_id = packet.node;
+                if(nodeStats->packets_count == 3){
+                    break;
+                }
+                PacketEntry *packetEntry = &nodeStats->packets[nodeStats->packets_count];
+                nodeStats->packets_count++;
+                snprintf(packetEntry->text,
+                        sizeof(packetEntry->text),
+                        "%s",
+                        packet.text);
+                packetEntry->packet_id = packet.packetId;
+                packetEntry->timestamp = packet.timestamp;
+            }
+        }
+        // Encode into payload
+        size_t bytes = pb_encode_to_bytes(
+            p->decoded.payload.bytes,
+            sizeof(p->decoded.payload.bytes),
+            ExperimentStats_fields,
+            &stats
+        );
+        if (bytes == 0) {
+            LOG_ERROR("Protobuf encode failed");
+            return 0;
+        }
+        p->decoded.payload.size = bytes;
+        for (size_t i = 0; i < bytes; i++) {
+            LOG_INFO("%02X ", p->decoded.payload.bytes[i]);
+        }
+        LOG_INFO("Encoded size: %u bytes", bytes);
+        service->sendToMesh(p);
+        LOG_INFO("Sent to mesh");
+        return p->id;
+    } 
+    return 0;
 }

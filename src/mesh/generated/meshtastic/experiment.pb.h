@@ -13,6 +13,7 @@
 /* A single packet entry */
 typedef struct _PacketEntry {
     uint32_t packet_id; /* unique packet id */
+    char text[64];
     uint32_t timestamp; /* millis() when sent/received for RTT */
 } PacketEntry;
 
@@ -20,16 +21,16 @@ typedef struct _PacketEntry {
 typedef struct _NodeStats {
     uint32_t node_id; /* destination or source node */
     pb_size_t packets_count;
-    PacketEntry packets[50]; /* all packet entries */
+    PacketEntry packets[3]; /* all packet entries */
 } NodeStats;
 
 /* All the stats */
 typedef struct _ExperimentStats {
     uint32_t sender_node; /* who is sending this report */
     pb_size_t sent_count;
-    NodeStats sent[10]; /* packets we sent */
+    NodeStats sent[11]; /* nodes the sender_node sent to */
     pb_size_t received_count;
-    NodeStats received[10]; /* packets we received */
+    NodeStats received[11]; /* nodes the sender_node received from */
 } ExperimentStats;
 
 
@@ -38,16 +39,17 @@ extern "C" {
 #endif
 
 /* Initializer values for message structs */
-#define PacketEntry_init_default                 {0, 0}
-#define NodeStats_init_default                   {0, 0, {PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default}}
-#define ExperimentStats_init_default             {0, 0, {NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default}, 0, {NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default}}
-#define PacketEntry_init_zero                    {0, 0}
-#define NodeStats_init_zero                      {0, 0, {PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero}}
-#define ExperimentStats_init_zero                {0, 0, {NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero}, 0, {NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero}}
+#define PacketEntry_init_default                 {0, "", 0}
+#define NodeStats_init_default                   {0, 0, {PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default}}
+#define ExperimentStats_init_default             {0, 0, {NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default}, 0, {NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default}}
+#define PacketEntry_init_zero                    {0, "", 0}
+#define NodeStats_init_zero                      {0, 0, {PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero}}
+#define ExperimentStats_init_zero                {0, 0, {NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero}, 0, {NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero}}
 
 /* Field tags (for use in manual encoding/decoding) */
 #define PacketEntry_packet_id_tag                1
-#define PacketEntry_timestamp_tag                2
+#define PacketEntry_text_tag                     2
+#define PacketEntry_timestamp_tag                3
 #define NodeStats_node_id_tag                    1
 #define NodeStats_packets_tag                    2
 #define ExperimentStats_sender_node_tag          1
@@ -57,7 +59,8 @@ extern "C" {
 /* Struct field encoding specification for nanopb */
 #define PacketEntry_FIELDLIST(X, a) \
 X(a, STATIC,   SINGULAR, UINT32,   packet_id,         1) \
-X(a, STATIC,   SINGULAR, UINT32,   timestamp,         2)
+X(a, STATIC,   SINGULAR, STRING,   text,              2) \
+X(a, STATIC,   SINGULAR, UINT32,   timestamp,         3)
 #define PacketEntry_CALLBACK NULL
 #define PacketEntry_DEFAULT NULL
 
@@ -87,10 +90,10 @@ extern const pb_msgdesc_t ExperimentStats_msg;
 #define ExperimentStats_fields &ExperimentStats_msg
 
 /* Maximum encoded size of messages (where known) */
-#define ExperimentStats_size                     14186
+#define ExperimentStats_size                     5418
 #define MESHTASTIC_EXPERIMENT_PB_H_MAX_SIZE      ExperimentStats_size
-#define NodeStats_size                           706
-#define PacketEntry_size                         12
+#define NodeStats_size                           243
+#define PacketEntry_size                         77
 
 #ifdef __cplusplus
 } /* extern "C" */
