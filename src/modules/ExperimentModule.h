@@ -23,13 +23,14 @@ class ExperimentModule : public SinglePortModule,  private concurrency::OSThread
     concurrency::OSThread("ExperimentModule")
     {
         // give network time to set up
-        setIntervalFromNow(40000);
+              // interval between 40000ms and 100000ms 
+        unsigned int startInterval = rand()%(100000-40000 + 1) + 40000;
+        setIntervalFromNow(startInterval);
     }
     // Our nodes
-    //NodeNum nodes[NB_NODES] = {1391039350, 1227105360, 3214103652, 1833769890, 
-    //2458335390, 871882989, 2446794159, 2057312131, 1507035365, 834716913, NODENUM_BROADCAST};
-    NodeNum nodes[2] = {NODENUM_BROADCAST, 2446794159};
-    //NodeNum nodes[2] = {1227105360,NODENUM_BROADCAST };
+    NodeNum nodes[NB_NODES] = {1391039350, 1227105360, 3214103652, 1833769890, 
+    2458335390, 871882989, 2446794159, 2057312131, 1507035365, 834716913, NODENUM_BROADCAST};
+    //NodeNum nodes[2] = {NODENUM_BROADCAST, 2446794159};
     // Total number of packets sent by our node 
     uint32_t globalCounter = 0;
     struct Packet {
@@ -75,7 +76,8 @@ class ExperimentModule : public SinglePortModule,  private concurrency::OSThread
     private:
       unsigned int my_interval = 65000; // interval in millisconds to run the module again
       uint32_t lastStatsSent = 0;       // last time stats were sent to collector node
-
+      // interval between 60000ms (1min ) and 180000ms (3mins)
+      unsigned int collectorInterval = rand()%(180000-60000 + 1) + 60000;
 };
 
 extern ExperimentModule *experimentModule;

@@ -23,7 +23,11 @@ void ExperimentModule::saveSentPacket(uint32_t packetId, NodeNum dest,
 }
 
 uint32_t ExperimentModule::sendPacket(int i, NodeNum dest)
-{
+{   
+    // don't send packet to myself
+    if(dest == nodeDB->getNodeNum()){
+        return 0;
+    }
     meshtastic_MeshPacket *p = router->allocForSending();
     if (p){
         p->to = dest;

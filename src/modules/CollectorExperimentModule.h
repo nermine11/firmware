@@ -32,7 +32,6 @@ class CollectorExperimentModule : public MeshModule
     protected:
       ProcessMessage handleReceived(const meshtastic_MeshPacket &mp);
       void printExperimentStats();
-      unsigned int my_interval = 10000; // interval in millisconds to run the module again
       bool wantPacket(const meshtastic_MeshPacket *p) override;
 
     };
