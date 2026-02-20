@@ -28,9 +28,9 @@ typedef struct _NodeStats {
 typedef struct _ExperimentStats {
     uint32_t sender_node; /* who is sending this report */
     pb_size_t sent_count;
-    NodeStats sent[11]; /* nodes the sender_node sent to */
+    NodeStats sent[10]; /* nodes the sender_node sent to */
     pb_size_t received_count;
-    NodeStats received[11]; /* nodes the sender_node received from */
+    NodeStats received[10]; /* nodes the sender_node received from */
 } ExperimentStats;
 
 
@@ -41,10 +41,10 @@ extern "C" {
 /* Initializer values for message structs */
 #define PacketEntry_init_default                 {0, "", 0}
 #define NodeStats_init_default                   {0, 0, {PacketEntry_init_default, PacketEntry_init_default, PacketEntry_init_default}}
-#define ExperimentStats_init_default             {0, 0, {NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default}, 0, {NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default}}
+#define ExperimentStats_init_default             {0, 0, {NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default}, 0, {NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default}}
 #define PacketEntry_init_zero                    {0, "", 0}
 #define NodeStats_init_zero                      {0, 0, {PacketEntry_init_zero, PacketEntry_init_zero, PacketEntry_init_zero}}
-#define ExperimentStats_init_zero                {0, 0, {NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero}, 0, {NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero}}
+#define ExperimentStats_init_zero                {0, 0, {NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero}, 0, {NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero}}
 
 /* Field tags (for use in manual encoding/decoding) */
 #define PacketEntry_packet_id_tag                1
@@ -90,7 +90,7 @@ extern const pb_msgdesc_t ExperimentStats_msg;
 #define ExperimentStats_fields &ExperimentStats_msg
 
 /* Maximum encoded size of messages (where known) */
-#define ExperimentStats_size                     5418
+#define ExperimentStats_size                     4926
 #define MESHTASTIC_EXPERIMENT_PB_H_MAX_SIZE      ExperimentStats_size
 #define NodeStats_size                           243
 #define PacketEntry_size                         77

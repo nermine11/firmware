@@ -4,6 +4,7 @@
 #include "MeshModule.h"
 #include "concurrency/OSThread.h"
 #include <map>
+#include <set>
 using namespace std;
 /**
  * A module to collect data from other nodes and sends it to the computer
@@ -23,12 +24,14 @@ class CollectorExperimentModule : public MeshModule
       uint32_t timestamp;
     };
     struct Node {
-      Packet sentPackets[100];
+      Packet sentPackets[200];
       uint32_t sentCount = 0;
-      uint32_t receievedCount = 0;
-      Packet receivedPackets[100];
+      uint32_t receivedCount = 0;
+      Packet receivedPackets[200];
     };
     std::map<NodeNum, Node> nodesMap;
+    std::set<uint32_t> sentProcessed;
+    std::set<uint32_t> receivedProcessed;
     protected:
       ProcessMessage handleReceived(const meshtastic_MeshPacket &mp);
       void printExperimentStats();
