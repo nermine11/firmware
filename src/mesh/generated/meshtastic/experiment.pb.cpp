@@ -6,9 +6,6 @@
 #error Regenerate this file with the current version of nanopb generator.
 #endif
 
-PB_BIND(PacketEntry, PacketEntry, AUTO)
-
-
 PB_BIND(NodeStats, NodeStats, AUTO)
 
 

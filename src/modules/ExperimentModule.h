@@ -7,10 +7,14 @@
 using namespace std;
 #define LEN(a) (sizeof(a) / sizeof(*a))
 #define NB_NODES 11
-#define COLLECTOR_NODE 2458335390  
+#define MAX_TRACKED_BROADCASTS 10
+#define COLLECTOR_NODE 834716913
+#define HIKING_INTERVAL 900000    // send packet every 15 mins
+#define DISASTER_INTERVAL 120000  // send packet every 2 mins
+
 /**
- * A module that sends packets periodically every 40s and listens to packets 
- * and sends its data to collector node every 2 minutes
+ * A module that sends packets periodically and listens to packets 
+ * and sends its data to collector node 
  * 
  */
 class ExperimentModule : public SinglePortModule,  private concurrency::OSThread
@@ -19,35 +23,41 @@ class ExperimentModule : public SinglePortModule,  private concurrency::OSThread
     /** Constructor
      * name is for debugging output
      */
-    ExperimentModule() : SinglePortModule("ExperimentModule", meshtastic_PortNum_TEXT_MESSAGE_APP),  
+    ExperimentModule() : 
+    SinglePortModule("ExperimentModule", meshtastic_PortNum_TEXT_MESSAGE_APP),  
     concurrency::OSThread("ExperimentModule")
     {
         // give network time to set up
         // interval between 40000ms and 100000ms 
-        unsigned int startInterval = rand()%(100000-40000 + 1) + 40000;
+        unsigned int startInterval = random(40000,100000);
         setIntervalFromNow(startInterval);
     }
     // Our nodes
-    NodeNum nodes[NB_NODES] = {1391039350, 1227105360, 3214103652, 1833769890, 
-    2458335390, 871882989, 2446794159, 2057312131, 1507035365, 834716913, NODENUM_BROADCAST};
-    uint32_t currentDestIndex = 0;
-    uint32_t globalSentCounter = 0;
-    //NodeNum nodes[2] = {NODENUM_BROADCAST, 2446794159};
-    struct Packet {
-      NodeNum node; // source or destination depending on whether we are sending or receiving
-      uint32_t packetId;
-      char text[64];
-      uint32_t timestamp;
+    NodeNum nodes[NB_NODES] = {
+        1391039350, 1227105360, 3214103652, 1833769890, 
+        2458335390, 871882989, 2446794159, 2057312131, 
+        1507035365, 834716913, NODENUM_BROADCAST
     };
-    struct NodeInfo {
-      Packet sentPackets[100];
-      uint32_t sentPacketsCount = 0;
-      uint32_t receivedPacketsCount = 0;
-      Packet receivedPackets[100];
-      uint32_t sentPacketsToCollector = 0;      // number of sent packets sent to the collector
-      uint32_t receivedPacketsToCollector = 0; // number of received packets sent to the collector
+    struct NodeStats {
+        uint32_t nodeId = 0;
+        uint32_t dmSent = 0;
+        uint32_t dmReceived = 0;
+        uint32_t broadcastSent = 0;
+        uint32_t broadcastReceived = 0;
+        uint32_t rttSum = 0;      // not used yet
+        uint32_t rttCount = 0;    // not used yet
     };
-    std::map<NodeNum, NodeInfo> nodesMap;
+    std::map<NodeNum, NodeStats> statsMap;
+
+    struct BroadcastRecord{
+        uint32_t sender;
+        uint32_t packetId;
+    };
+    /*BroadcastRecord recentReceivedBroadcasts[MAX_TRACKED_BROADCASTS];
+    uint32_t broadcastRecordCount = 0;
+    uint32_t sentBroadcastRecords = 0;*/
+
+
   protected:
     /**
     * Send periodically a packet to a destination
@@ -60,24 +70,20 @@ class ExperimentModule : public SinglePortModule,  private concurrency::OSThread
      */
     uint32_t sendPacket( NodeNum dest);
     /**
-     * Save sent packet in our nodesMap
-     */
-    void saveSentPacket(uint32_t id, NodeNum dest, 
-                        uint32_t timestamp,char text[64]);
-    /**
      * Called when we receive a packet, We save the packet in receivedPackets map
      */
     ProcessMessage handleReceived(const meshtastic_MeshPacket &mp) override;
-    void savereceivedPacket(const meshtastic_MeshPacket &mp, uint32_t timestamp);
     /**
      * Send our data to collector node 
      */
     uint32_t sendToCollector();
     private:
-      unsigned int my_interval = 90000; // interval in millisconds to run the module again
-      uint32_t lastStatsSent = 0;       // last time stats were sent to collector node
-      // interval between 1000000ms and 180000ms (3mins)
-      unsigned int collectorInterval = rand()%(120000-100000 + 1) + 100000;
+        unsigned int my_interval = DISASTER_INTERVAL; // interval in millisconds to run the module again
+        uint32_t lastStatsSent = 0;       // last time stats were sent to collector node
+        // interval between 1000000ms and 180000ms (3mins)
+        unsigned int collectorInterval = random(100000,180000);
+        uint32_t currentDestIndex = 0;
+        uint32_t globalSentCounter = 0;
 };
 
 extern ExperimentModule *experimentModule;

@@ -15,27 +15,24 @@ class CollectorExperimentModule : public MeshModule
     /** Constructor
      * name is for debugging output
      */
-    CollectorExperimentModule() : MeshModule("CollectorExperimentModule")
-    {}
-    struct Packet {
-      NodeNum node; // source or destination depending on whether we are sending or receiving
-      uint32_t packetId;
-      char text[64];
-      uint32_t timestamp;
+    CollectorExperimentModule() :
+        MeshModule("CollectorExperimentModule"){}
+
+    struct LinkStats{
+        uint32_t dmSent      = 0;
+        uint32_t dmReceived  = 0;
+        uint32_t broadcastSent      = 0;
+        uint32_t broadcastReceived  = 0;
+        uint32_t rtt_sum   = 0;
+        uint32_t rtt_count = 0;
     };
-    struct Node {
-      Packet sentPackets[200];
-      uint32_t sentCount = 0;
-      uint32_t receivedCount = 0;
-      Packet receivedPackets[200];
-    };
-    std::map<NodeNum, Node> nodesMap;
-    std::set<uint32_t> sentProcessed;
-    std::set<uint32_t> receivedProcessed;
+    // networkStats[A][B] = stats reported by A about B
+    std::map<NodeNum, std::map<NodeNum, LinkStats>> networkStats;
     protected:
       ProcessMessage handleReceived(const meshtastic_MeshPacket &mp);
       void printExperimentStats();
       bool wantPacket(const meshtastic_MeshPacket *p) override;
+      void sendTestUSB();
 
     };
 extern CollectorExperimentModule  *collectorModule;

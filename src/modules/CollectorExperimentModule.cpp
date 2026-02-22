@@ -14,18 +14,21 @@ bool CollectorExperimentModule::wantPacket(const meshtastic_MeshPacket *p){
 
 ProcessMessage CollectorExperimentModule::handleReceived(const meshtastic_MeshPacket &mp)
 {
-    // if we receive text dump from another node, send all data through serial
-    if (mp.decoded.portnum == meshtastic_PortNum_TEXT_MESSAGE_APP)
-    {
+    /*
+    If we receive text dump from another node, 
+    send all data through serial
+    */ 
+    if (mp.decoded.portnum == meshtastic_PortNum_TEXT_MESSAGE_APP){
         const char *msg = (const char *) mp.decoded.payload.bytes;
-        LOG_INFO("messageeeeeee %s", msg);
+        LOG_INFO("messagee %s", msg);
         if (strncmp(msg, "dump", 4) == 0){
-            printExperimentStats();             
+            sendTestUSB();             
         }
         return ProcessMessage::STOP;
     }
-    // Stats received from the experiment nodes
-    // only handle packets sent to us as DM (data reports)
+    // ---- Stats received from the experiment nodes------
+
+    // Only handle packets sent to us as DM 
     if (!isToUs(&mp)){
         return ProcessMessage::STOP;
     }
@@ -40,118 +43,100 @@ ProcessMessage CollectorExperimentModule::handleReceived(const meshtastic_MeshPa
         return ProcessMessage::STOP;
     }
     NodeNum sender = stats.sender_node;
-    Node &nodeEntry = nodesMap[sender];
+    auto &ns = networkStats[sender];
     /* ------------------ Sent packets ------------------ */
-    for (uint32_t i = 0; i < stats.sent_count; i++) {
-        NodeStats *nodeState = &stats.sent[i];
-        for (uint32_t j = 0; j < nodeState->packets_count; j++) {
-            PacketEntry *pe = &nodeState->packets[j];
-            /* We have seen this packet before so do not 
-            save it */
-            if(sentProcessed.find(pe->packet_id) != sentProcessed.end()){
-                continue;
-            }
-            else{
-                sentProcessed.insert(pe->packet_id);
-            }
-            Packet &p = nodeEntry.sentPackets[nodeEntry.sentCount];
-            p.node = nodeState->node_id;              // destination node
-            p.packetId = pe->packet_id;
-            p.timestamp = pe->timestamp;
-            snprintf(p.text,
-                    sizeof(p.text),
-                    "%s",
-                    pe->text);          
-            LOG_INFO("text %s",p.text);  
-            nodeEntry.sentCount++;
-            LOG_INFO("sent count of node %u: %u",p.node, nodeEntry.sentCount);
-        }
+    for (uint32_t i = 0; i < stats.stats_count; i++) {
+        _NodeStats *nodeState = &stats.stats[i];
+        LinkStats& linkStats = networkStats[sender][nodeState->node_id];
+        linkStats.dmSent = nodeState -> dm_sent;
+        linkStats.dmReceived = nodeState -> dm_received;
+        linkStats.broadcastSent = nodeState -> broadcast_sent;
+        linkStats.broadcastReceived = nodeState -> broadcast_received;
+        linkStats.rtt_sum = nodeState ->rtt_sum;
+        linkStats.rtt_count = nodeState ->rtt_count;
     }
-    /* ------------------ Received packets ------------------ */
-    for (uint32_t i = 0; i < stats.received_count; i++) {
-        NodeStats *nodeState = &stats.received[i];
-        for (uint32_t j = 0; j < nodeState->packets_count; j++) {
-            PacketEntry *pe = &nodeState->packets[j];
-            /* We have seen this packet before so do not 
-            save it */
-            if(receivedProcessed.find(pe->packet_id) != receivedProcessed.end()){
-                continue;
-            }
-            else{
-                receivedProcessed.insert(pe->packet_id);
-            }
-            Packet &p = nodeEntry.receivedPackets[nodeEntry.receivedCount];
-            p.node = nodeState->node_id;              // Source node
-            p.packetId = pe->packet_id;
-            p.timestamp = pe->timestamp;
-            snprintf(p.text,
-                    sizeof(p.text),
-                    "%s",
-                    pe->text);            
-            nodeEntry.receivedCount++;
-        }
-    }
-    printExperimentStats();
     return ProcessMessage::STOP; // Don't Let others look at this message 
 }
 
 void CollectorExperimentModule::printExperimentStats()
 {
-    LOG_INFO("{");
-    for (auto &pair : nodesMap)
-    {
-        NodeNum senderId = pair.first;
-        Node &node = pair.second;
-        LOG_INFO("  Node: %u", senderId);
-        /* -------------------- SENT -------------------- */
-        LOG_INFO("  Sent {");
-        std::map<NodeNum, uint32_t> sentCountMap;
-        for (uint32_t i = 0; i < node.sentCount; i++){
-            sentCountMap[node.sentPackets[i].node]++;
-        }
-        for (auto &destPair : sentCountMap){
-            NodeNum destNode = destPair.first;
-            uint32_t count = destPair.second;
-            LOG_INFO("    Node %u : Number of packets sent: %u",
-                     destNode, count);
-            LOG_INFO("    {");
-            for (uint32_t i = 0; i < node.sentCount; i++){
-                Packet &pkt = node.sentPackets[i];
-                if (pkt.node == destNode){
-                    LOG_INFO("      PacketId: %u, timestamp: %u, text: %s",
-                             pkt.packetId,
-                             pkt.timestamp,
-                             pkt.text);
-                }
+    LOG_INFO (" ========= Network Stats ========");
+    for(auto &sendPair: networkStats){
+        NodeNum A = sendPair.first;
+        for(auto& destPair : networkStats[A]){
+            NodeNum B = destPair.first;
+            LinkStats& ls = destPair.second;
+            // PDR of DMs sent by A for each dest node B
+            // what B received from A
+            uint32_t dmReceived = 0;
+            uint32_t broadcastReceived = 0;
+            if(networkStats.count(B) && networkStats.count(A)){
+                dmReceived = networkStats[B][A].dmReceived;
+                broadcastReceived = networkStats[B][A].broadcastReceived;
             }
-            LOG_INFO("    }");
-        }
-        LOG_INFO("  }");
-        /* -------------------- RECEIVED -------------------- */
-        LOG_INFO("  Received {");
-        std::map<NodeNum, uint32_t> recvCountMap;
-        for (uint32_t i = 0; i < node.receivedCount; i++){
-            recvCountMap[node.receivedPackets[i].node]++;
-        }
-        for (auto &srcPair : recvCountMap){
-            NodeNum srcNode = srcPair.first;
-            uint32_t count = srcPair.second;
-            LOG_INFO("    Node %u : Number of packets received: %u",
-                     srcNode, count);
-            LOG_INFO("    {");
-            for (uint32_t i = 0; i < node.receivedCount; i++){
-                Packet &pkt = node.receivedPackets[i];
-                if (pkt.node == srcNode){
-                    LOG_INFO("      PacketId: %u, timestamp: %u, text: %s",
-                             pkt.packetId,
-                             pkt.timestamp,
-                             pkt.text);
-                }
+            // dm PDR
+            float dmPdr = 0.0f;
+            if(networkStats[A][B].dmSent> 0){
+                // node to node pdr
+                dmPdr = (float) dmReceived/networkStats[A][B].dmSent;
             }
-            LOG_INFO("    }");
+            // broadcast PDR
+            float broadcastPdr = 0.0f;
+            if(networkStats[A][B].broadcastSent> 0){
+                // node to node pdr
+                broadcastPdr = (float) broadcastReceived/networkStats[A][B].broadcastSent;
+            }
+            LOG_INFO(" Link %u -> %u", A, B);
+            LOG_INFO(" dm PDR: %.3f", dmPdr);
+            LOG_INFO(" broadcast PDR %.3f", broadcastPdr );     
+            // global PDR of broadcast sent by A nb 
         }
-        LOG_INFO("  }");
+
+
+        LOG_INFO (" =================");
+
     }
-    LOG_INFO("}");
+    LOG_INFO (" ========End =========");
+
 }
 
+void CollectorExperimentModule::sendTestUSB()
+{
+    Serial.println("DUMP_BEGIN");
+    for(auto &sendPair: networkStats){
+        NodeNum A = sendPair.first;
+        for(auto& destPair : networkStats[A]){
+            NodeNum B = destPair.first;
+            LinkStats& ls = destPair.second;
+            // PDR of DMs sent by A for each dest node B
+            // what B received from A
+            uint32_t dmReceived = 0;
+            uint32_t broadcastReceived = 0;
+            if(networkStats.count(B) && networkStats.count(A)){
+                dmReceived = networkStats[B][A].dmReceived;
+                broadcastReceived = networkStats[B][A].broadcastReceived;
+            }
+            // dm PDR
+            float dmPdr = 0.0f;
+            if(networkStats[A][B].dmSent> 0){
+                // node to node pdr
+                dmPdr = (float) dmReceived/networkStats[A][B].dmSent;
+            }
+            // broadcast PDR
+            float broadcastPdr = 0.0f;
+            if(networkStats[A][B].broadcastSent> 0){
+                // node to node pdr
+                broadcastPdr = (float) broadcastReceived/networkStats[A][B].broadcastSent;
+            }
+            Serial.print(A);
+            Serial.print(",");
+            Serial.print(B);
+            Serial.print(",");
+            Serial.print(dmPdr, 6);
+            Serial.print(",");
+            Serial.println(broadcastPdr, 6);
+        }
+    }
+    Serial.println("DUMP_END");
+    Serial.flush();
+}
