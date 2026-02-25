@@ -14,8 +14,7 @@ typedef struct _NodeStats {
     uint32_t node_id;
     uint32_t dm_sent;
     uint32_t dm_received;
-    uint32_t broadcast_sent;
-    uint32_t broadcast_received;
+    uint32_t broadcasts_received;
     uint32_t rtt_sum;
     uint32_t rtt_count;
 } NodeStats;
@@ -24,6 +23,7 @@ typedef struct _ExperimentStats {
     uint32_t sender_node;
     pb_size_t stats_count;
     NodeStats stats[10];
+    uint32_t sentBroadcasts;
 } ExperimentStats;
 
 
@@ -32,37 +32,37 @@ extern "C" {
 #endif
 
 /* Initializer values for message structs */
-#define NodeStats_init_default                   {0, 0, 0, 0, 0, 0, 0}
-#define ExperimentStats_init_default             {0, 0, {NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default}}
-#define NodeStats_init_zero                      {0, 0, 0, 0, 0, 0, 0}
-#define ExperimentStats_init_zero                {0, 0, {NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero}}
+#define NodeStats_init_default                   {0, 0, 0, 0, 0, 0}
+#define ExperimentStats_init_default             {0, 0, {NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default}, 0}
+#define NodeStats_init_zero                      {0, 0, 0, 0, 0, 0}
+#define ExperimentStats_init_zero                {0, 0, {NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero}, 0}
 
 /* Field tags (for use in manual encoding/decoding) */
 #define NodeStats_node_id_tag                    1
 #define NodeStats_dm_sent_tag                    2
 #define NodeStats_dm_received_tag                3
-#define NodeStats_broadcast_sent_tag             4
-#define NodeStats_broadcast_received_tag         5
-#define NodeStats_rtt_sum_tag                    6
-#define NodeStats_rtt_count_tag                  7
+#define NodeStats_broadcasts_received_tag        4
+#define NodeStats_rtt_sum_tag                    5
+#define NodeStats_rtt_count_tag                  6
 #define ExperimentStats_sender_node_tag          1
 #define ExperimentStats_stats_tag                2
+#define ExperimentStats_sentBroadcasts_tag       3
 
 /* Struct field encoding specification for nanopb */
 #define NodeStats_FIELDLIST(X, a) \
 X(a, STATIC,   SINGULAR, UINT32,   node_id,           1) \
 X(a, STATIC,   SINGULAR, UINT32,   dm_sent,           2) \
 X(a, STATIC,   SINGULAR, UINT32,   dm_received,       3) \
-X(a, STATIC,   SINGULAR, UINT32,   broadcast_sent,    4) \
-X(a, STATIC,   SINGULAR, UINT32,   broadcast_received,   5) \
-X(a, STATIC,   SINGULAR, UINT32,   rtt_sum,           6) \
-X(a, STATIC,   SINGULAR, UINT32,   rtt_count,         7)
+X(a, STATIC,   SINGULAR, UINT32,   broadcasts_received,   4) \
+X(a, STATIC,   SINGULAR, UINT32,   rtt_sum,           5) \
+X(a, STATIC,   SINGULAR, UINT32,   rtt_count,         6)
 #define NodeStats_CALLBACK NULL
 #define NodeStats_DEFAULT NULL
 
 #define ExperimentStats_FIELDLIST(X, a) \
 X(a, STATIC,   SINGULAR, UINT32,   sender_node,       1) \
-X(a, STATIC,   REPEATED, MESSAGE,  stats,             2)
+X(a, STATIC,   REPEATED, MESSAGE,  stats,             2) \
+X(a, STATIC,   SINGULAR, UINT32,   sentBroadcasts,    3)
 #define ExperimentStats_CALLBACK NULL
 #define ExperimentStats_DEFAULT NULL
 #define ExperimentStats_stats_MSGTYPE NodeStats
@@ -75,9 +75,9 @@ extern const pb_msgdesc_t ExperimentStats_msg;
 #define ExperimentStats_fields &ExperimentStats_msg
 
 /* Maximum encoded size of messages (where known) */
-#define ExperimentStats_size                     446
+#define ExperimentStats_size                     392
 #define MESHTASTIC_EXPERIMENT_PB_H_MAX_SIZE      ExperimentStats_size
-#define NodeStats_size                           42
+#define NodeStats_size                           36
 
 #ifdef __cplusplus
 } /* extern "C" */
