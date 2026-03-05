@@ -44,6 +44,8 @@ void ExperimentModule::clearStats(){
     }
     num_sent_broadcasts = 0;
     timestampsCount  = 0;
+    pkgen_sent_count = 0;
+    LOG_INFO("Cleared stats");
 }
 
 /* ----------------------SEND---------------------------------*/
@@ -61,7 +63,7 @@ uint32_t ExperimentModule::sendClearStatsResponseToCollector(){
         p->decoded.payload.size = 1;
         // send the packet
         service->sendToMesh(p);
-        LOG_INFO("Sent STATS_CLEAR_REQ to collector");
+        LOG_INFO("Sent STATS_CLEAR_RESP to collector");
         return p->id;
     }
 }
@@ -104,7 +106,7 @@ uint32_t ExperimentModule::sendPkgenData(NodeNum dest, uint8_t pkgenDoReply, uin
         memcpy(buf + offset, &seqnum, 2);
         offset += 2;
         p->decoded.payload.size = offset;
-        LOG_INFO("Encoded size of the reply: %u bytes", p->decoded.payload.size);
+        LOG_INFO("Encoded size of PKGEN_DATA: %u bytes", p->decoded.payload.size);
         // send the packet
         service->sendToMesh(p);
         //----Save the stats----      
@@ -121,11 +123,12 @@ uint32_t ExperimentModule::sendPkgenData(NodeNum dest, uint8_t pkgenDoReply, uin
             else{
                 timestamps[timestampsCount].packetId = p->id;
                 timestamps[timestampsCount].timestamp = sentTime;
-                LOG_INFO("id: %u, time:%u", timestamps[timestampsCount].packetId, timestamps[timestampsCount].timestamp);
+                //LOG_INFO("id: %u, time:%u", timestamps[timestampsCount].packetId, timestamps[timestampsCount].timestamp);
                 timestampsCount++;
             }
 
         }
+        LOG_INFO("Sent PKGEN data to %u", dest);
         return p->id;
     }
 }
@@ -149,7 +152,7 @@ uint32_t ExperimentModule::sendPkgenResponseToCollector(uint8_t cmdid){
         memcpy(buf + offset, &cmdid, 1);
         offset += 1;
         p->decoded.payload.size = offset;
-        LOG_INFO("Encoded size of the reply: %u bytes", p->decoded.payload.size);
+        LOG_INFO("Encoded size of pkgen response: %u bytes", p->decoded.payload.size);
         // send the packet
         service->sendToMesh(p);
         LOG_INFO("Sent PKGEN_CONFIG_RESP to collector");
@@ -224,6 +227,13 @@ void ExperimentModule::sendStatsToCollector(){
             }
             memcpy(buf + offset, &rtt , 2);
             offset += 2;   
+            LOG_INFO("Node 0x%x: sent=%u, replies=%u, dmRx=%u, bcRx=%u, rttAvg=%u",
+                ns->nodeId,
+                ns->num_pkgen_data_sent,
+                ns->num_pkgen_reply_received,
+                ns->num_pkgen_data_received_dm,
+                ns->num_pkgen_data_received_broadcasts,
+                rtt);
         }
         p->decoded.payload.size = offset;
         LOG_INFO("Encoded size: %u bytes", p->decoded.payload.size);
@@ -285,7 +295,6 @@ ProcessMessage ExperimentModule::handleReceived(const meshtastic_MeshPacket &mp)
         if(!stats){
             return ProcessMessage::CONTINUE;
         }
-        LOG_INFO("Received test packet from %u", mp.from);
         /* We received a DM, 
            Don't cound replies or requests from Collector node as received DMs
         */
@@ -309,6 +318,7 @@ ProcessMessage ExperimentModule::handleReceived(const meshtastic_MeshPacket &mp)
                 pkgenPeriod, pkgenNumpkt)){
                     LOG_INFO("Received pkgen request");
                     pkgenState = PkgenState::RUNNING;
+                    setInterval(0); // call run_once() now
                 };
             }
             else if(command == PacketType::STATS_GET_REQ){
@@ -346,21 +356,18 @@ ProcessMessage ExperimentModule::handleReceived(const meshtastic_MeshPacket &mp)
 /* ----------------------------RUNS PERIODICALLY-------------------------------*/
 int32_t ExperimentModule::runOnce()
 {
-    static uint16_t num_pkgen_data_sent = 0;
     if(pkgenState == PkgenState::RUNNING){
         // If we sent all the PKGEN_DATA we have to or if numpkt = 0 we stop sending
-        if(num_pkgen_data_sent >= pkgenNumpkt){
+        if(pkgen_sent_count >= pkgenNumpkt){
             pkgenState = PkgenState::IDLE;
             sendPkgenResponseToCollector(cmdid);
             return my_interval;   // go back to normal scheduling
         }
         // Send 1 PKGEN_DATA packet every pkgenPeriod
         else{
-            while(num_pkgen_data_sent < pkgenNumpkt){
-                sendPkgenData(pkgenDestination, pkgenDoReply, num_pkgen_data_sent);
-                num_pkgen_data_sent ++;
-                return pkgenPeriod * 1000;  // run again after pkgenPeriod seconds
-            }
+            sendPkgenData(pkgenDestination, pkgenDoReply, pkgen_sent_count);
+            pkgen_sent_count ++;
+            return pkgenPeriod * 1000;  // run again after pkgenPeriod seconds
         }
     }
     else{

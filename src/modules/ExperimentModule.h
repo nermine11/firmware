@@ -66,7 +66,7 @@ class ExperimentModule : public SinglePortModule,  private concurrency::OSThread
     };
     NodeStats statsArray[NB_NODES]; //stats of the other nodes
     uint16_t num_sent_broadcasts = 0;
-
+    uint16_t pkgen_sent_count = 0;
     // Sent Packets timestamps tracking
     struct TimeStamps{
         uint32_t packetId = 0;
@@ -120,7 +120,7 @@ class ExperimentModule : public SinglePortModule,  private concurrency::OSThread
     virtual int32_t runOnce() override;
 
     private:
-        unsigned int my_interval = 180000; // interval in millisconds to run runOnce again
+        unsigned int my_interval = 60000; // interval in millisconds to run runOnce again
         NodeStats* getStats(NodeNum node);
         uint32_t getTimestamp(uint32_t id);
         PkgenState pkgenState      = PkgenState::IDLE;
