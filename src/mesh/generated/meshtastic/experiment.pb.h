@@ -22,7 +22,7 @@ typedef struct _NodeStats {
 typedef struct _ExperimentStats {
     uint32_t sender_node;
     pb_size_t stats_count;
-    NodeStats stats[10];
+    NodeStats stats[6];
     uint32_t sentBroadcasts;
 } ExperimentStats;
 
@@ -33,9 +33,9 @@ extern "C" {
 
 /* Initializer values for message structs */
 #define NodeStats_init_default                   {0, 0, 0, 0, 0, 0}
-#define ExperimentStats_init_default             {0, 0, {NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default}, 0}
+#define ExperimentStats_init_default             {0, 0, {NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default, NodeStats_init_default}, 0}
 #define NodeStats_init_zero                      {0, 0, 0, 0, 0, 0}
-#define ExperimentStats_init_zero                {0, 0, {NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero}, 0}
+#define ExperimentStats_init_zero                {0, 0, {NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero, NodeStats_init_zero}, 0}
 
 /* Field tags (for use in manual encoding/decoding) */
 #define NodeStats_node_id_tag                    1
@@ -75,7 +75,7 @@ extern const pb_msgdesc_t ExperimentStats_msg;
 #define ExperimentStats_fields &ExperimentStats_msg
 
 /* Maximum encoded size of messages (where known) */
-#define ExperimentStats_size                     392
+#define ExperimentStats_size                     240
 #define MESHTASTIC_EXPERIMENT_PB_H_MAX_SIZE      ExperimentStats_size
 #define NodeStats_size                           36
 

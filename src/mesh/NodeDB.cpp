@@ -1719,11 +1719,13 @@ bool NodeDB::updateUser(uint32_t nodeId, meshtastic_User &p, uint8_t channelInde
             return false;
         }
     }
+    /*----To be changed for the experiment, if we receive a new key for the user we overwrite it */
     if (info->user.public_key.size == 32) { // if we have a key for this user already, don't overwrite with a new one
         // if the key doesn't match, don't update nodeDB at all.
         if (p.public_key.size != 32 || (memcmp(p.public_key.bytes, info->user.public_key.bytes, 32) != 0)) {
             LOG_WARN("Public Key mismatch, dropping NodeInfo");
-            return false;
+            //LOG_WARN("Public Key mismatch, not dropping NodeInfo");
+            return false; // commenting this line for the experiment
         }
         LOG_INFO("Public Key set for node, not updating!");
     } else if (p.public_key.size == 32) {

@@ -23,7 +23,7 @@ int CollectorExperimentModule::getNodeIndex(NodeNum node){
 
 ProcessMessage CollectorExperimentModule::handleReceived(const meshtastic_MeshPacket &mp)
 {
-    LOG_INFO(" in handle received");
+    //LOG_INFO(" in handle received");
     /*
     If we receive text dump from another node, 
     send all data through serial
@@ -39,7 +39,7 @@ ProcessMessage CollectorExperimentModule::handleReceived(const meshtastic_MeshPa
 
     // Only handle packets sent to us as DM 
     if (!isToUs(&mp) || mp.from == nodeDB->getNodeNum()){
-        LOG_INFO("message not to us or from us");
+        //LOG_INFO("message not to us or from us");
         return ProcessMessage::CONTINUE;
     }
     static ExperimentStats stats = ExperimentStats_init_zero;
@@ -49,7 +49,7 @@ ProcessMessage CollectorExperimentModule::handleReceived(const meshtastic_MeshPa
             mp.decoded.payload.size,
             ExperimentStats_fields,
             &stats)) {
-        LOG_ERROR("Decode failed");
+        //LOG_ERROR("Decode failed");
         return ProcessMessage::CONTINUE;
     }
     NodeNum sender = stats.sender_node;

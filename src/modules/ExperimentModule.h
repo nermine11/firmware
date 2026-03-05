@@ -2,16 +2,10 @@
 #include "SinglePortModule.h"
 #include "concurrency/OSThread.h"
 #include "pb_encode.h"
-#include "mesh/generated/meshtastic/experiment.pb.h"
-#define LEN(a) (sizeof(a) / sizeof(*a))
-#define NB_NODES 9
-#define MAX_TRACKED_BROADCASTS 10
-#define MAX_TRACKED_RECEIVED_BROADCASTS 20
-#define MAX_TRACKED_TIMESTAMPS 10
-
-#define COLLECTOR_NODE 834716913
-#define HIKING_INTERVAL 900000    // send packet every 15 mins
-#define DISASTER_INTERVAL 120000  // send packet every 2 mins
+#define NB_NODES 10
+#define MAX_TRACKED_TIMESTAMPS 100
+#define COLLECTOR_NODE 0x31c0c4f1
+#define START_INTERVAL 120000
 
 /**
  * A module that sends packets periodically and listens to packets 
@@ -25,78 +19,116 @@ class ExperimentModule : public SinglePortModule,  private concurrency::OSThread
      * name is for debugging output
      */
     ExperimentModule() : 
-    SinglePortModule("ExperimentModule", meshtastic_PortNum_TEXT_MESSAGE_APP),  
+    SinglePortModule("ExperimentModule", meshtastic_PortNum_PRIVATE_APP),  
     concurrency::OSThread("ExperimentModule")
     {
-        // give network time to set up
-        // interval between 40000ms and 100000ms 
-        unsigned int startInterval = random(40000,100000);
-        setIntervalFromNow(startInterval);
-        // initialize statsArray
+        // Give network time to set up
+        setIntervalFromNow(START_INTERVAL);
+        // Initialize statsArray
         for(auto i = 0; i< NB_NODES; i++){
             statsArray[i].nodeId = nodes[i];
-            statsArray[i].dmSent = 0;
-            statsArray[i].dmReceived = 0;
-            statsArray[i].broadcastsReceived = 0;
-            statsArray[i].rttSum = 0;
-            statsArray[i].rttCount = 0;
+            statsArray[i].num_pkgen_data_sent = 0;
+            statsArray[i].num_pkgen_reply_received = 0;
+            statsArray[i].num_pkgen_data_received_dm = 0;
+            statsArray[i].num_pkgen_data_received_broadcasts = 0;
+            statsArray[i].rtt = 0;
         }
     }
-    // Our nodes, we don't send DMs to the collector node
-    NodeNum nodes[NB_NODES + 1] = {
-        1391039350, 1227105360, 3214103652, 1833769890, 
-        2458335390, 871882989, 2446794159, 2057312131, 
-        1507035365, NODENUM_BROADCAST
+    // Our nodes
+    NodeNum nodes[NB_NODES] = {
+        0x52e99376, 0x49242450, 0xbf935464,
+        0x6d4d1ba2, 0x9287389e, 0x33f7e0ed, 
+        0x91d71daf, 0x7aa01783, 0x59d388e5,
+        0x31c0c4f1
     };
-    //NodeNum nodes[NB_NODES + 1] = {
-    //    2446794159,2057312131, NODENUM_BROADCAST
-    //};
+    enum class PacketType: uint8_t{
+        NONE,
+        PKGEN_CONFIG_REQ        = 0X01,
+        PKGEN_CONFIG_RESP       = 0X02,
+        PKGEN_DATA              = 0X03,
+        PKGEN_REPLY             = 0X04,
+        STATS_GET_REQ           = 0X05,
+        STATS_GET_RESP          = 0X06,
+        STATS_CLEAR_REQ         = 0X07,
+        STATS_CLEAR_RESP        = 0X08
+    };
+    enum class PkgenState{
+        IDLE,
+        RUNNING
+    };
     struct NodeStats {
         uint32_t nodeId = 0;
-        uint32_t dmSent = 0;
-        uint32_t dmReceived = 0;
-        uint32_t broadcastsReceived = 0;
-        uint32_t rttSum = 0;      // not used yet
-        uint32_t rttCount = 0;    // not used yet
+        uint16_t num_pkgen_data_sent = 0;
+        uint16_t num_pkgen_reply_received = 0;
+        uint16_t num_pkgen_data_received_dm = 0;
+        uint16_t num_pkgen_data_received_broadcasts = 0;
+        uint16_t rtt = 0;      
     };
     NodeStats statsArray[NB_NODES]; //stats of the other nodes
-    // sent Packets timestamps tracking
+    uint16_t num_sent_broadcasts = 0;
+
+    // Sent Packets timestamps tracking
     struct TimeStamps{
         uint32_t packetId = 0;
-        uint32_t timestamp = 0;
+        uint16_t timestamp = 0;
     };
     TimeStamps timestamps[MAX_TRACKED_TIMESTAMPS];
-    uint32_t timestampsCount = 0;
-    uint32_t sentBroadcasts = 0;
+    uint16_t timestampsCount = 0;
+
   protected:
     /**
-    * Send periodically a packet to a destination
-    * Each my_interval ms, change the destination
-    */
-    virtual int32_t runOnce() override;
-    /**
-     * Send a packet nb i to specific destination dest
-     * @ dest: the destination of the packet
+     * clear our local data
      */
-    uint32_t sendPacket( NodeNum dest);
+    void clearStats();
     /**
-     * Called when we receive a packet, We save the packet in receivedPackets map
+     * Send STATS_CLEAR_RESP to the collector
+     */
+    uint32_t sendClearStatsResponseToCollector();
+    /**
+     * Send a packet to specific destination dest
+     */
+    uint32_t sendPkgenData(NodeNum dest, uint8_t pkgenDoReply, uint16_t seqnum);
+    /**
+     * SENDS PKGEN_CONFIG_RESP to the collector
+     */
+    uint32_t sendPkgenResponseToCollector(uint8_t cmdid);
+    /**
+     * Sends reply backs
+     */
+    uint32_t sendReply(const meshtastic_MeshPacket &mp);
+    /**
+     * Send our stats to collector node 
+     */
+    void sendStatsToCollector();
+    /**
+     * Parse the requests we receive from the collector node
+     */
+    PacketType parseCommand(const meshtastic_MeshPacket &mp);
+    /**
+     * Parse  PKGEN_CONFIG_REQ we receive from the collector node
+     */
+    bool parsePkgenCommand(const meshtastic_MeshPacket &mp,
+    uint8_t&cmdid, NodeNum& dest, uint8_t& pkgenDoReply, 
+    uint16_t& pkgenPeriod, uint16_t& pkgenNumpkt);
+    /**
+     * Called when we receive a packet
      */
     ProcessMessage handleReceived(const meshtastic_MeshPacket &mp) override;
     /**
-     * Send our data to collector node 
-     */
-    void sendToCollector();
+    * Runs every my_interval ms
+    */
+    virtual int32_t runOnce() override;
 
     private:
-        unsigned int my_interval = DISASTER_INTERVAL; // interval in millisconds to run the module again
-        uint32_t lastStatsSent = 0;       // last time stats were sent to collector node
-        // interval between 100000ms and 180000ms (3mins)
-        unsigned int collectorInterval = random(100000,180000);
-        uint32_t currentDestIndex = 0;
-        uint32_t globalSentCounter = 0;
+        unsigned int my_interval = 180000; // interval in millisconds to run runOnce again
         NodeStats* getStats(NodeNum node);
         uint32_t getTimestamp(uint32_t id);
+        PkgenState pkgenState      = PkgenState::IDLE;
+        uint8_t  cmdid             = 0;
+        NodeNum pkgenDestination   = 0;
+        uint8_t  pkgenDoReply      = 0;
+        uint16_t pkgenPeriod       = 0;
+        uint16_t pkgenNumpkt       = 0;
 };
 
 extern ExperimentModule *experimentModule;

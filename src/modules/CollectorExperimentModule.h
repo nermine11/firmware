@@ -44,7 +44,6 @@ class CollectorExperimentModule : public MeshModule
 
     protected:
       ProcessMessage handleReceived(const meshtastic_MeshPacket &mp);
-      void printExperimentStats();
       bool wantPacket(const meshtastic_MeshPacket *p) override;
       int  getNodeIndex(NodeNum node);
       void sendTestUSB();

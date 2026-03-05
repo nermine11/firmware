@@ -12,6 +12,7 @@
 #include "mesh-pb-constants.h"
 #include "meshUtils.h"
 #include "modules/RoutingModule.h"
+//#include "modules/NodeInfoModule.h"
 #if !MESHTASTIC_EXCLUDE_MQTT
 #include "mqtt/MQTT.h"
 #endif
@@ -57,7 +58,6 @@ Allocator<meshtastic_MeshPacket> &packetPool = staticPool;
 #endif
 
 static uint8_t bytes[MAX_LORA_PAYLOAD_LEN + 1] __attribute__((__aligned__));
-
 /**
  * Constructor
  *
@@ -458,6 +458,11 @@ DecodeState perhapsDecode(meshtastic_MeshPacket *p)
 
     // assert(p->which_payloadVariant == MeshPacket_encrypted_tag);
     if (!decrypted) {
+        /*-----------added for the experiments to ask for nodeInfo again instead of blocking -----*/
+        /*if(p->from != 0 && p->from != nodeDB->getNodeNum()){
+            LOG_INFO("asking for nodeInfo instead of failing");
+            nodeInfoModule->sendOurNodeInfo(p->from, true, p->channel, true);
+        }*/
         // Try to find a channel that works with this hash
         for (chIndex = 0; chIndex < channels.getNumChannels(); chIndex++) {
             // Try to use this hash/channel pair

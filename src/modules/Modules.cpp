@@ -110,9 +110,9 @@
 #include "modules/ExperimentModule.h"
 #endif
 
-#if !MESHTASTIC_EXCLUDE_COLLECTOREXPERIMENT
-#include "modules/CollectorExperimentModule.h"
-#endif
+//#if !MESHTASTIC_EXCLUDE_COLLECTOREXPERIMENT
+//#include "modules/CollectorExperimentModule.h"
+//#endif
 /**
  * Create module instances here.  If you are adding a new module, you must 'new' it here (or somewhere else)
  */
@@ -125,12 +125,12 @@ void setupModules()
         buzzerFeedbackThread = new BuzzerFeedbackThread();
     }
 #endif
-//#if !MESHTASTIC_EXCLUDE_EXPERIMENT
-//    experimentModule = new ExperimentModule();
-//#endif
-#if !MESHTASTIC_EXCLUDE_COLLECTOREXPERIMENT
-    collectorModule = new CollectorExperimentModule();
+#if !MESHTASTIC_EXCLUDE_EXPERIMENT
+    experimentModule = new ExperimentModule();
 #endif
+//#if !MESHTASTIC_EXCLUDE_COLLECTOREXPERIMENT
+//    collectorModule = new CollectorExperimentModule();
+//#endif
 #if !MESHTASTIC_EXCLUDE_ADMIN
     adminModule = new AdminModule();
 #endif

@@ -9,7 +9,7 @@
 PB_BIND(NodeStats, NodeStats, AUTO)
 
 
-PB_BIND(ExperimentStats, ExperimentStats, 2)
+PB_BIND(ExperimentStats, ExperimentStats, AUTO)
 
 
 
