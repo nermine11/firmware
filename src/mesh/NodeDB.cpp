@@ -1725,7 +1725,7 @@ bool NodeDB::updateUser(uint32_t nodeId, meshtastic_User &p, uint8_t channelInde
         if (p.public_key.size != 32 || (memcmp(p.public_key.bytes, info->user.public_key.bytes, 32) != 0)) {
             LOG_WARN("Public Key mismatch, dropping NodeInfo");
             //LOG_WARN("Public Key mismatch, not dropping NodeInfo");
-            return false; // commenting this line for the experiment
+            //return false; // commenting this line for the experiment
         }
         LOG_INFO("Public Key set for node, not updating!");
     } else if (p.public_key.size == 32) {

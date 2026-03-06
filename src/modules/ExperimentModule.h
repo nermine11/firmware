@@ -5,7 +5,8 @@
 #define NB_NODES 10
 #define MAX_TRACKED_TIMESTAMPS 100
 #define COLLECTOR_NODE 0x31c0c4f1
-#define START_INTERVAL 120000
+#define START_INTERVAL 300000 
+#define PKGEN_INTERVAL 600000 // do 10 mins
 
 /**
  * A module that sends packets periodically and listens to packets 
@@ -68,11 +69,7 @@ class ExperimentModule : public SinglePortModule,  private concurrency::OSThread
     uint16_t num_sent_broadcasts = 0;
     uint16_t pkgen_sent_count = 0;
     // Sent Packets timestamps tracking
-    struct TimeStamps{
-        uint32_t packetId = 0;
-        uint16_t timestamp = 0;
-    };
-    TimeStamps timestamps[MAX_TRACKED_TIMESTAMPS];
+    uint16_t timestampsBySeqnum[MAX_TRACKED_TIMESTAMPS] = {0};
     uint16_t timestampsCount = 0;
 
   protected:
@@ -122,7 +119,6 @@ class ExperimentModule : public SinglePortModule,  private concurrency::OSThread
     private:
         unsigned int my_interval = 60000; // interval in millisconds to run runOnce again
         NodeStats* getStats(NodeNum node);
-        uint32_t getTimestamp(uint32_t id);
         PkgenState pkgenState      = PkgenState::IDLE;
         uint8_t  cmdid             = 0;
         NodeNum pkgenDestination   = 0;
