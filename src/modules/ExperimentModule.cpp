@@ -37,7 +37,6 @@ void ExperimentModule::clearStats(){
 
 /* ----------------------SEND---------------------------------*/
 uint32_t ExperimentModule::sendClearStatsResponseToCollector(){
-    uint32_t packetTimestamp = millis();
     meshtastic_MeshPacket *p = allocDataPacket();
     if(!p){
         return 0;
@@ -94,7 +93,7 @@ uint32_t ExperimentModule::sendPkgenData(NodeNum dest, uint8_t pkgenDoReply, uin
         // send the packet
         service->sendToMesh(p);
         //----Save the stats----      
-        uint16_t sentTime = millis();
+        uint32_t sentTime = millis();
         if(isBroadcast(p->to)){
             num_sent_broadcasts++;
         }
@@ -106,6 +105,7 @@ uint32_t ExperimentModule::sendPkgenData(NodeNum dest, uint8_t pkgenDoReply, uin
             }
             else{
                 timestampsBySeqnum[seqnum] = sentTime;
+                timestampsCount ++;
             }
         }
         LOG_INFO("Sent PKGEN data to %u", dest);
@@ -171,7 +171,6 @@ uint32_t ExperimentModule::sendReply(const meshtastic_MeshPacket &mp){
 }
 
 void ExperimentModule::sendStatsToCollector(){
-    uint32_t packetTimestamp = millis();
     meshtastic_MeshPacket *p = allocDataPacket();
     if(!p){
         return;
@@ -207,11 +206,7 @@ void ExperimentModule::sendStatsToCollector(){
             offset += 2;
             memcpy(buf + offset, &ns->num_pkgen_data_received_broadcasts , 2);
             offset += 2;
-            uint16_t rtt = 0;
-            if(ns->num_pkgen_reply_received){
-                rtt = (ns->rtt/ ns->num_pkgen_reply_received) / 1000; // to see if i should count it or send rtt directly
-            }
-            memcpy(buf + offset, &rtt , 2);
+            memcpy(buf + offset, &ns->rtt , 2);
             offset += 2;   
             LOG_INFO("Node 0x%x: sent=%u, replies=%u, dmRx=%u, bcRx=%u, rttAvg=%u",
                 ns->nodeId,
@@ -219,7 +214,7 @@ void ExperimentModule::sendStatsToCollector(){
                 ns->num_pkgen_reply_received,
                 ns->num_pkgen_data_received_dm,
                 ns->num_pkgen_data_received_broadcasts,
-                rtt);
+                ns->rtt);
         }
         p->decoded.payload.size = offset;
         LOG_INFO("Encoded size: %u bytes", p->decoded.payload.size);
@@ -289,22 +284,21 @@ ProcessMessage ExperimentModule::handleReceived(const meshtastic_MeshPacket &mp)
                 if(parsePkgenCommand(mp, cmdid, pkgenDestination, pkgenDoReply,
                 pkgenPeriod, pkgenNumpkt)){
                     LOG_INFO("Received pkgen request");
-                    pkgenState = PkgenState::RUNNING;
+                    state = State::PKGEN;
                     sendPkgenResponseToCollector(cmdid);
-                    setInterval(PKGEN_INTERVAL); // call run_once() after 10 mins
+                    setIntervalFromNow(PKGEN_INTERVAL); // Start after all nodes sent back theri PKGEN_RESP to have clear floor for the experiment
                 };
             }
             else if(command == PacketType::STATS_GET_REQ){
                 LOG_INFO("Received stats request");
-                sendStatsToCollector();
+                state = State::STATS;
+                setIntervalFromNow(0); 
             }
             else if(command == PacketType::STATS_CLEAR_REQ){
                 LOG_INFO("Received Clear stats request");
                 clearStats();
-                uint32_t id = sendClearStatsResponseToCollector();
-                if(!id){
-                    LOG_ERROR(" Response ID is 0");
-                }
+                state = State::CLEAR;
+                setIntervalFromNow(0); // send CLEAR_RESP now
             }
         }
         // we received a broadcast 
@@ -335,7 +329,7 @@ ProcessMessage ExperimentModule::handleReceived(const meshtastic_MeshPacket &mp)
                 stats->num_pkgen_reply_received ++;
                 uint16_t seqnumReply = 0;
                 memcpy(&seqnumReply, &pl.bytes[1], 2); 
-                uint16_t sentTime = timestampsBySeqnum[seqnumReply];
+                uint32_t sentTime = timestampsBySeqnum[seqnumReply];
                 if(sentTime > 0){
                     uint16_t rtt = receivedTimestamp - sentTime ; // received - sent
                     stats->rtt += rtt;
@@ -350,10 +344,18 @@ ProcessMessage ExperimentModule::handleReceived(const meshtastic_MeshPacket &mp)
 /* ----------------------------RUNS PERIODICALLY-------------------------------*/
 int32_t ExperimentModule::runOnce()
 {
-    if(pkgenState == PkgenState::RUNNING){
+    if(state == State::CLEAR){
+        uint32_t id = sendClearStatsResponseToCollector();
+        if(!id){
+            LOG_ERROR(" Response ID is 0");
+        }
+        state = State::IDLE;
+        return my_interval;
+    }
+    else if(state == State::PKGEN){
         // If we sent all the PKGEN_DATA we have to or if numpkt = 0 we stop sending
         if(pkgen_sent_count >= pkgenNumpkt){
-            pkgenState = PkgenState::IDLE;
+            state = State::IDLE;
             return my_interval;   // go back to normal scheduling
         }
         // Send 1 PKGEN_DATA packet every pkgenPeriod
@@ -363,7 +365,12 @@ int32_t ExperimentModule::runOnce()
             return pkgenPeriod * 1000;  // run again after pkgenPeriod seconds
         }
     }
-    else{
+    else if(state == State::STATS){
+        sendStatsToCollector();
+        state = State::IDLE;
+        return my_interval;
+    }
+    else{ 
         return(my_interval);
     }   
 }
